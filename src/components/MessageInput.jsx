@@ -1,18 +1,20 @@
-import React from 'react'
-import useMessage from '../hooks/UseMessage/UseMessage'
+import React from 'react';
+import useMessage from '../hooks/UseMessage/UseMessage';
 
-function MessageInput({callBack}) {
-const {post, setPost} = useMessage();
+function MessageInput(callBack) {
+  const { post, setPost } = useMessage();
   return (
     <div>
-    <form onSubmit={callBack}>
-        <input type='text' value={post} onChange={(e) => setPost(e.target.value)
-        }/> 
+      <form onSubmit={callBack}>
+        <input
+          type="text"
+          value={post}
+          onChange={(e) => setPost(e.target.value)}
+        />
         <button>Send</button>
-    </form>
-
+      </form>
     </div>
-  )
+  );
 }
 
-export default MessageInput
+export default MessageInput;
