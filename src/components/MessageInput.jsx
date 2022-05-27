@@ -5,7 +5,7 @@ function MessageInput() {
   return (
     <div>
     <form>
-        <input type='text' value={post}/> 
+        <input type='text'/> 
         <button>Send</button>
     </form>
 
