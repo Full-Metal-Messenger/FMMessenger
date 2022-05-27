@@ -26,6 +26,7 @@ const AuthProvider = ({ children }) => {
         setusername,
         currentUser,
         setCurrentUser,
+        user,
       }}
     >
       {children}
