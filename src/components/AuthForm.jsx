@@ -1,6 +1,7 @@
 import {
   Button,
   Flex,
+  FormControl,
   FormLabel,
   Heading,
   Input,
@@ -19,16 +20,20 @@ function AuthForm() {
         <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
         <form>
           <Heading>Log in</Heading>
-          <FormLabel>Email</FormLabel>
-          <Input placeholder="Email" variant="filled" type="email" />
-          <FormLabel>Password</FormLabel>
-          <Input
-            placeholder="Password"
-            variant="filled"
-            mb={6}
-            type="password"
-          />
-          <Button mb={6} colorScheme="teal">
+          <FormControl isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input placeholder="Email" variant="filled" type="email" />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
+              placeholder="Password"
+              variant="filled"
+              mb={6}
+              type="password"
+            />
+          </FormControl>
+          <Button width="full" mb={6} colorScheme="teal">
             Log in
           </Button>
         </form>
