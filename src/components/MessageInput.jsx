@@ -1,7 +1,7 @@
 import React from 'react';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
-function MessageInput(callBack) {
+function MessageInput({ callBack }) {
   const { post, setPost } = useMessage();
   return (
     <div>
