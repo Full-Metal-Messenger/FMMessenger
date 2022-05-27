@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useAuthContext } from '../../context/AuthContext';
-import { getMessages, subscribe, unsubscribe } from '../../services/messages';
+import { MessageContext } from '../../context/MessageContext';
+import {
+  getMessages,
+  postMessage,
+  subscribe,
+  unsubscribe,
+} from '../../services/messages';
 
 function useMessage() {
-  const [messages, setMessages] = useState([]);
+  const { post, setPost, messages, setMessages } = useContext(MessageContext);
   const { user } = useAuthContext();
   console.log(user);
-  const [post, setPost] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await postMessage(post, user.id);
