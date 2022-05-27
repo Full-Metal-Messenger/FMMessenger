@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import { AuthContext } from '../../context/AuthContext';
+import React, { useEffect, useState } from 'react'
+import { useAuthContext } from '../../context/AuthContext';
 import { getMessages, subscribe, unsubscribe } from '../../services/fetchMessages';
 
-function UseMessage() {
+function useMessage() {
     const [messages, setMessages] = useState([]);
-    const {user} = AuthContext();
-    const [post,setPost] = useState('')
+    const {user} = useAuthContext();
+    console.log(user);
+    const [post, setPost] = useState('')
     const handleSubmit = async (e) => {
         e.preventDefault();
         await postMessage(post, user.id);
@@ -24,10 +25,10 @@ function UseMessage() {
       }, []);
     
 
-  return {handleSubmit, messages, handleMessageReceived, post}
+  return {handleSubmit, messages, setPost, handleMessageReceived, post}
 
    
   
 }
 
-export default UseMessage
+export default useMessage
