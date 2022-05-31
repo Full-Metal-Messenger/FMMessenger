@@ -1,13 +1,31 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
+import { useAuthContext } from '../context/AuthContext';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Chat() {
+  const { user } = useAuthContext();
   const { messages } = useMessage();
   return (
-    <Box w="100%">
-      {messages.map(({ id, posts }) => (
-        <p key={id}>{posts}</p>
+    <Box
+      display="flex"
+      flex="1"
+      flexDirection="column"
+      justifyContent="end"
+      p="4"
+    >
+      {messages.map(({ id, posts, profile_id }) => (
+        <Text
+          key={id}
+          border="1px"
+          borderRadius="18px"
+          p="2"
+          m="2"
+          alignSelf={user.id === profile_id ? 'flex-start' : 'flex-end'}
+          bg={user.id === profile_id ? 'blue.300' : 'gray.500'}
+        >
+          {posts}
+        </Text>
       ))}
     </Box>
   );

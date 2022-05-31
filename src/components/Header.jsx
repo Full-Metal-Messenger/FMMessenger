@@ -1,4 +1,4 @@
-import { Button, useColorMode } from '@chakra-ui/react';
+import { Button, Flex, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
@@ -19,9 +19,9 @@ export default function Header() {
   };
 
   return (
-    <>
+    <Flex flex="1" maxH="50px" justifyContent="space-between">
       {user && <Button onClick={handleSubmit}>LogOut</Button>}
       <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
-    </>
+    </Flex>
   );
 }
