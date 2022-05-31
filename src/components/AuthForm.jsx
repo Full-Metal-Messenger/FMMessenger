@@ -96,7 +96,13 @@ function AuthForm() {
             {type ? 'Log In' : 'Sign Up'}
           </Button>
 
-          {error && <Text textDecoration="underline">{error}</Text>}
+          {error && (
+            <Text textDecoration="underline">
+              {error === 'Database error saving new user'
+                ? 'Username is already in use.'
+                : error}
+            </Text>
+          )}
           {!type ? (
             <LinkBox>
               Already Have an account?
