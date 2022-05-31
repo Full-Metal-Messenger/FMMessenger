@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import React from 'react';
 import Chat from '../components/Chat';
 import MessageInput from '../components/MessageInput';
@@ -6,10 +7,38 @@ import useMessage from '../hooks/UseMessage/UseMessage';
 function Main() {
   const { handleSubmit } = useMessage();
   return (
-    <div>
-    <Chat />
-      <MessageInput callBack={handleSubmit} />
-    </div>
+    <Box
+      display="flex"
+      minH="100vh"
+      flexDirection="column"
+      justifyItems="center"
+      // alignItems="center"
+      alignItems="stretch"
+      py="2"
+    >
+      <Box
+        w="100%"
+        display="flex"
+        bg="red.700"
+        flex="1"
+        flexDirection="column"
+        flex-justifyItems="center"
+        alignItems="stretch"
+        textAlign="center"
+      >
+        <Box
+          display="flex"
+          flex="1"
+          flexDirection="column"
+          flex-justifyItems="center"
+        >
+          <Chat />
+        </Box>
+      </Box>
+      <Box>
+        <MessageInput callBack={handleSubmit} />
+      </Box>
+    </Box>
   );
 }
 
