@@ -13,7 +13,6 @@ function Main() {
       minH="100vh"
       flexDirection="column"
       justifyItems="center"
-      // alignItems="center"
       alignItems="stretch"
       flex="1"
       py="2"
@@ -22,7 +21,6 @@ function Main() {
       <Box
         w="100%"
         display="flex"
-        // bg="red.700"
         flex="1"
         flexDirection="column"
         justifyItems="center"
