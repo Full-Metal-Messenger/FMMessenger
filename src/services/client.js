@@ -5,8 +5,8 @@ export const client = createClient(
 );
 
 export const parseData = ({ data, error }) => {
-  if (error) 
-    throw error;
-  
+  if (error) throw error;
+
   return data;
-}
+};
+//adding dev
