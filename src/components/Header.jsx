@@ -11,6 +11,7 @@ export default function Header() {
     logout();
     history.push('/auth');
     setCurrentUser('');
+    //clear out inputs on auth and maybe hook this
   };
 
   return <>{currentUser && <Button onClick={handleSubmit}>LogOut</Button>}</>;
