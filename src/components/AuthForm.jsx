@@ -5,6 +5,8 @@ import {
   FormLabel,
   Heading,
   Input,
+  Link,
+  LinkBox,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -36,6 +38,13 @@ function AuthForm() {
           <Button width="full" mb={6} colorScheme="teal">
             Log in
           </Button>
+          {/* conditionally render these */}
+          <LinkBox>
+            <Link>Already Have an account. Sign In</Link>
+          </LinkBox>
+          <LinkBox>
+            <Link>Dont have an account? Sign Up</Link>
+          </LinkBox>
         </form>
       </Flex>
     </Flex>
