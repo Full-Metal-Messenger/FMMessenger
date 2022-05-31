@@ -3,6 +3,7 @@ import React from 'react';
 import Chat from '../components/Chat';
 import Header from '../components/Header';
 import MessageInput from '../components/MessageInput';
+import Profiles from '../components/Profiles';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Main() {
@@ -25,7 +26,7 @@ function Main() {
         // bg="red.700"
         flex="1"
         flexDirection="column"
-        flex-justifyItems="center"
+        justifyItems="center"
         alignItems="stretch"
         textAlign="center"
       >
@@ -36,6 +37,7 @@ function Main() {
       <Box>
         <MessageInput callBack={handleSubmit} />
       </Box>
+      <Profiles />
     </Box>
   );
 }
