@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(user || { email: null });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [type, setType] = useState('sign-in');
+  const [type, setType] = useState(true);
   const [error, setError] = useState('');
   const [username, setusername] = useState('');
   return (
