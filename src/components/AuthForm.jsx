@@ -4,6 +4,7 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  Text,
   Input,
   Link,
   LinkBox,
@@ -102,15 +103,17 @@ function AuthForm() {
 
           {!type ? (
             <LinkBox>
-              <Link onClick={() => setType(true)}>
-                Already Have an account. Sign In
-              </Link>
+              Already Have an account?
+              <Text fontWeight="bold">
+                <Link onClick={() => setType(true)}> Sign In</Link>
+              </Text>
             </LinkBox>
           ) : (
             <LinkBox>
-              <Link onClick={() => setType(false)}>
-                Dont have an account? Sign Up
-              </Link>
+              Dont have an account?
+              <Text fontWeight="bold">
+                <Link onClick={() => setType(false)}>Sign Up</Link>
+              </Text>
             </LinkBox>
           )}
         </form>
