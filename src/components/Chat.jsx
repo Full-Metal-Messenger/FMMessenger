@@ -1,16 +1,16 @@
-import React from 'react'
+import { Box } from '@chakra-ui/react';
+import React from 'react';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Chat() {
-const {messages} = useMessage();
+  const { messages } = useMessage();
   return (
-    <div>
-        {messages.map(({id, posts}) => (
-            <p key={id}>{posts}</p>
-
-        ))}
-    </div>
-  )
+    <Box w="100%">
+      {messages.map(({ id, posts }) => (
+        <p key={id}>{posts}</p>
+      ))}
+    </Box>
+  );
 }
 
-export default Chat
+export default Chat;

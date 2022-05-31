@@ -1,19 +1,22 @@
+import { Box, Button, FormControl, Input } from '@chakra-ui/react';
 import React from 'react';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function MessageInput({ callBack }) {
   const { post, setPost } = useMessage();
   return (
-    <div>
+    <Box>
       <form onSubmit={callBack}>
-        <input
-          type="text"
-          value={post}
-          onChange={(e) => setPost(e.target.value)}
-        />
-        <button>Send</button>
+        <FormControl display="flex" justifySelf="end" p="2">
+          <Input
+            type="text"
+            value={post}
+            onChange={(e) => setPost(e.target.value)}
+          />
+          <Button>Send</Button>
+        </FormControl>
       </form>
-    </div>
+    </Box>
   );
 }
 
