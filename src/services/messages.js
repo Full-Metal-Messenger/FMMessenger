@@ -1,10 +1,12 @@
+import Profiles from '../components/Profiles';
 import { client, parseData } from './client';
 
 export async function getMessages() {
   const resp = await client
     .from('messages')
-    .select()
+    .select('*, profiles(username)')
     .order('created_at', { descending: false });
+  console.log('resp', resp);
   return parseData(resp);
 }
 
