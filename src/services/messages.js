@@ -8,10 +8,8 @@ export async function getMessages() {
   return parseData(resp);
 }
 
-export async function postMessage(post, id) {
-  const resp = await client
-    .from('messages')
-    .insert({ posts: post, profile_id: id });
+export async function postMessage(post) {
+  const resp = await client.from('messages').insert({ posts: post });
   return parseData(resp);
 }
 

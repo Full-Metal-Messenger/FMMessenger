@@ -15,7 +15,7 @@ function useMessage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await postMessage(post, user.id);
+    await postMessage(post);
     setPost('');
   };
   const handleMessageReceived = (message) => {
