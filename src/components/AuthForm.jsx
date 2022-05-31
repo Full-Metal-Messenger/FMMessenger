@@ -4,22 +4,19 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  Text,
   Input,
   Link,
   LinkBox,
-  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { signInUser, signUpUser } from '../services/auth';
 
 function AuthForm() {
-  const { toggleColorMode } = useColorMode();
   const formBackGround = useColorModeValue('gray.100', 'gray.700');
-
   const history = useHistory();
   const {
     email,
@@ -48,7 +45,7 @@ function AuthForm() {
         setCurrentUser(data);
         history.push('/');
       }
-    } catch (error) {
+    } catch (e) {
       setError(e.message);
     }
   };
@@ -56,7 +53,6 @@ function AuthForm() {
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
       <Flex direction="column" background={formBackGround} p={12} rounded={6}>
-        <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
         <form onSubmit={handleSubmit}>
           <Heading>{type ? 'Log in' : 'Sign Up'}</Heading>
           <FormControl isRequired>
@@ -100,17 +96,26 @@ function AuthForm() {
             {type ? 'Log In' : 'Sign Up'}
           </Button>
 
+          {error && (
+            <Text textDecoration="underline">
+              {error === 'Database error saving new user'
+                ? 'Username is already in use.'
+                : error}
+            </Text>
+          )}
           {!type ? (
             <LinkBox>
-              <Link onClick={() => setType(true)}>
-                Already Have an account. Sign In
-              </Link>
+              Already Have an account?
+              <Text fontWeight="bold">
+                <Link onClick={() => setType(true)}> Sign In</Link>
+              </Text>
             </LinkBox>
           ) : (
             <LinkBox>
-              <Link onClick={() => setType(false)}>
-                Dont have an account? Sign Up
-              </Link>
+              Dont have an account?
+              <Text fontWeight="bold">
+                <Link onClick={() => setType(false)}>Sign Up</Link>
+              </Text>
             </LinkBox>
           )}
         </form>
