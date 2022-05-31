@@ -25,7 +25,6 @@ export function subscribe(onPost = (_post) => {}) {
   const resp = client
     .from('messages')
     .on('INSERT', (message) => {
-      // console.log('Post Posted!', message);
       onPost(message.new);
     })
     .subscribe();

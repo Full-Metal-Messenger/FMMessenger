@@ -10,8 +10,6 @@ import {
 
 function useMessage() {
   const { post, setPost, messages, setMessages } = useContext(MessageContext);
-  const { user } = useAuthContext();
-  console.log(user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

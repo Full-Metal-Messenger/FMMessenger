@@ -7,7 +7,6 @@ function useProfiles() {
   useEffect(() => {
     const findPeople = async () => {
       const data = await getProfiles();
-      console.log(data);
       setPerson(data);
     };
     findPeople();

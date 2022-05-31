@@ -41,7 +41,6 @@ function AuthForm() {
     try {
       if (type) {
         const data = await signInUser(email, password);
-        console.log(data);
         setCurrentUser(data);
         history.push('/');
       } else {
