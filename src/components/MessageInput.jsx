@@ -9,6 +9,7 @@ function MessageInput({ callBack }) {
       <form onSubmit={callBack}>
         <FormControl display="flex" justifySelf="end" p="2">
           <Input
+            px="10"
             type="text"
             value={post}
             onChange={(e) => setPost(e.target.value)}

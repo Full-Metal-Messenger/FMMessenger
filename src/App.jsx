@@ -7,7 +7,6 @@ import Header from './components/Header';
 export default function App() {
   return (
     <>
-      <Header />
       <Switch>
         <Route path="/auth">
           <Auth />
