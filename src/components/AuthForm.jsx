@@ -8,15 +8,19 @@ import {
   Input,
   Link,
   LinkBox,
+  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { signInUser, signUpUser } from '../services/auth';
 
 function AuthForm() {
+  const { toggleColorMode } = useColorMode();
   const formBackGround = useColorModeValue('gray.100', 'gray.700');
+
   const history = useHistory();
   const {
     email,
@@ -37,7 +41,6 @@ function AuthForm() {
     try {
       if (type) {
         const data = await signInUser(email, password);
-        console.log(data);
         setCurrentUser(data);
         history.push('/');
       } else {
@@ -45,7 +48,7 @@ function AuthForm() {
         setCurrentUser(data);
         history.push('/');
       }
-    } catch (e) {
+    } catch (error) {
       setError(e.message);
     }
   };
@@ -53,6 +56,7 @@ function AuthForm() {
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
       <Flex direction="column" background={formBackGround} p={12} rounded={6}>
+        <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
         <form onSubmit={handleSubmit}>
           <Heading>{type ? 'Log in' : 'Sign Up'}</Heading>
           <FormControl isRequired>
@@ -96,13 +100,6 @@ function AuthForm() {
             {type ? 'Log In' : 'Sign Up'}
           </Button>
 
-          {error && (
-            <Text textDecoration="underline">
-              {error === 'Database error saving new user'
-                ? 'Username is already in use.'
-                : error}
-            </Text>
-          )}
           {!type ? (
             <LinkBox>
               Already Have an account?

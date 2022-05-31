@@ -8,6 +8,14 @@ export async function getMessages() {
   return parseData(resp);
 }
 
+export async function getProfiles() {
+  const resp = await client
+    .from('profiles')
+    .select()
+    .order('created_at', { descending: false });
+  return parseData(resp);
+}
+
 export async function postMessage(post) {
   const resp = await client.from('messages').insert({ posts: post });
   return parseData(resp);
@@ -17,7 +25,6 @@ export function subscribe(onPost = (_post) => {}) {
   const resp = client
     .from('messages')
     .on('INSERT', (message) => {
-      console.log('Post Posted!', message);
       onPost(message.new);
     })
     .subscribe();

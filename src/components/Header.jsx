@@ -3,6 +3,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { logout } from '../services/auth';
+import Profiles from './Profiles';
 
 export default function Header() {
   const { toggleColorMode } = useColorMode();
@@ -19,7 +20,9 @@ export default function Header() {
   };
 
   return (
-    <Flex flex="1" maxH="50px" justifyContent="space-between">
+    <Flex flex="1" maxH="50px" justifyContent="space-between" mb="20px">
+      <Profiles />
+
       {user && <Button onClick={handleSubmit}>LogOut</Button>}
       <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
     </Flex>
