@@ -1,18 +1,27 @@
-import { Button } from '@chakra-ui/react';
+import { Button, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { logout } from '../services/auth';
 
 export default function Header() {
+  const { toggleColorMode } = useColorMode();
   const history = useHistory();
-  const { currentUser, setCurrentUser } = useAuthContext();
+  const { user, setCurrentUser, setEmail, setPassword, setusername } =
+    useAuthContext();
   const handleSubmit = () => {
     logout();
     history.push('/auth');
     setCurrentUser('');
-    //clear out inputs on auth and maybe hook this
+    setEmail('');
+    setPassword('');
+    setusername('');
   };
 
-  return <>{currentUser && <Button onClick={handleSubmit}>LogOut</Button>}</>;
+  return (
+    <>
+      {user && <Button onClick={handleSubmit}>LogOut</Button>}
+      <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
+    </>
+  );
 }
