@@ -22,19 +22,14 @@ function Main() {
       <Box
         w="100%"
         display="flex"
-        bg="red.700"
+        // bg="red.700"
         flex="1"
         flexDirection="column"
         flex-justifyItems="center"
         alignItems="stretch"
         textAlign="center"
       >
-        <Box
-          display="flex"
-          flex="1"
-          flexDirection="column"
-          flex-justifyItems="center"
-        >
+        <Box display="flex" flex="1" flexDirection="column">
           <Chat />
         </Box>
       </Box>
