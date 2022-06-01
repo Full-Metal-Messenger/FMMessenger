@@ -1,4 +1,3 @@
-import Profiles from '../components/Profiles';
 import { client, parseData } from './client';
 
 export async function getMessages() {
@@ -6,7 +5,6 @@ export async function getMessages() {
     .from('messages')
     .select('*, profiles(username)')
     .order('created_at', { descending: false });
-  console.log('resp', resp);
   return parseData(resp);
 }
 
@@ -23,15 +21,15 @@ export async function postMessage(post) {
   return parseData(resp);
 }
 
-export function subscribe(onPost = (_post) => {}) {
-  const resp = client
-    .from('messages')
-    .on('INSERT', (message) => {
-      onPost(message.new);
-    })
-    .subscribe();
-  return resp;
-}
+// export function subscribe(onPost = (_post) => {}) {
+//   const resp = client
+//     .from('messages')
+//     .on('INSERT', (message) => {
+//       onPost(message.new);
+//     })
+//     .subscribe();
+//   return resp;
+// }
 
 export function unsubscribe() {
   return client.removeAllSubscriptions();

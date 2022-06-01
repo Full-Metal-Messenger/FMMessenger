@@ -10,10 +10,8 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  RadioGroup,
-  Radio,
-  Stack,
   Button,
+  Box,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { useState } from 'react';
@@ -23,22 +21,14 @@ export default function Profiles() {
   const [placement, setPlacement] = useState('right');
   const { person } = useProfiles();
   return (
-    <div>
-      <RadioGroup defaultValue={placement} onChange={setPlacement}>
-        <Stack direction="row" mb="4">
-          <Radio value="top">Top</Radio>
-          <Radio value="right">Right</Radio>
-          <Radio value="bottom">Bottom</Radio>
-          <Radio value="left">Left</Radio>
-        </Stack>
-      </RadioGroup>
+    <Box>
       <Button colorScheme="blue" onClick={onOpen}>
-        Open
+        Friends
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Users</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Friends</DrawerHeader>
           <DrawerBody>
             {person.map((item) => (
               <h1 key={item.id}>{item.username}</h1>
@@ -46,6 +36,6 @@ export default function Profiles() {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </div>
+    </Box>
   );
 }
