@@ -1,8 +1,16 @@
-import { Box, Button, FormControl, Input } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  Input,
+  toast,
+  useToast,
+} from '@chakra-ui/react';
 import React from 'react';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function MessageInput({ callBack }) {
+  const toast = useToast();
   const { post, setPost } = useMessage();
   return (
     <Box>
@@ -15,7 +23,32 @@ function MessageInput({ callBack }) {
             value={post}
             onChange={(e) => setPost(e.target.value)}
           />
-          <Button>Send</Button>
+          <Button
+            type="submit"
+            onClick={() =>
+              toast({
+                isClosable: 'true',
+                duration: 1200,
+                position: 'top-left',
+                render: () => (
+                  <Box
+                    border="1px"
+                    borderRadius="18px"
+                    color="white"
+                    p={3}
+                    bg="green.500"
+                    // bg="blue.500"
+
+                    w="150px"
+                  >
+                    Message Sent!
+                  </Box>
+                ),
+              })
+            }
+          >
+            Send
+          </Button>
         </FormControl>
       </form>
     </Box>
