@@ -1,24 +1,8 @@
-import {
-  Button,
-  ButtonGroup,
-  Flex,
-  Input,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTrigger,
-  useColorMode,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Button, Flex, useColorMode } from '@chakra-ui/react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import useRooms from '../hooks/useRooms';
 import { logout } from '../services/auth';
 import NewRoomPop from './NewRoomPop';
 import Profiles from './Profiles';

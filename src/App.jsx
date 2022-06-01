@@ -11,6 +11,9 @@ export default function App() {
         <Route path="/auth">
           <Auth />
         </Route>
+        <PrivateRoute path="/:name">
+          <Main />
+        </PrivateRoute>
         <PrivateRoute path="/">
           <Main />
         </PrivateRoute>
