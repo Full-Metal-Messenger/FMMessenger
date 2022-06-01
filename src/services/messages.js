@@ -21,6 +21,11 @@ export async function postMessage(post) {
   return parseData(resp);
 }
 
+export async function deleteMessage(id) {
+  const resp = await client.from('messages').delete().match({ id });
+  return parseData(resp);
+}
+
 // export function subscribe(onPost = (_post) => {}) {
 //   const resp = client
 //     .from('messages')
