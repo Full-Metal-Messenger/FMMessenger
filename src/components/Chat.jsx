@@ -22,7 +22,7 @@ function Chat() {
             borderRadius="18px"
             p="2"
             m="2"
-            alignSelf={user.id === profile_id ? 'flex-start' : 'flex-end'}
+            alignSelf={user.id !== profile_id ? 'flex-start' : 'flex-end'}
             bg={user.id === profile_id ? 'blue.300' : 'gray.500'}
           >
             <Text>{posts}</Text>
