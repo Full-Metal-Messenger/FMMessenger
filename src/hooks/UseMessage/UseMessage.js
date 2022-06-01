@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useAuthContext } from '../../context/AuthContext';
 import { MessageContext } from '../../context/MessageContext';
+import { client } from '../../services/client';
 import {
   getMessages,
   postMessage,
@@ -16,19 +17,28 @@ function useMessage() {
     await postMessage(post);
     setPost('');
   };
-  const handleMessageReceived = (message) => {
-    setMessages((prevMessages) => [...prevMessages, message]);
+
+  const getData = async () => {
+    const data = await getMessages();
+    setMessages(data);
   };
 
   useEffect(() => {
-    getMessages().then(setMessages);
-
-    subscribe(handleMessageReceived);
+    client
+      .from('messages')
+      .on('INSERT', () => {
+        getData();
+      })
+      .subscribe();
 
     return () => unsubscribe();
   }, []);
 
-  return { handleSubmit, messages, setPost, handleMessageReceived, post };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return { handleSubmit, messages, setPost, post };
 }
 
 export default useMessage;
