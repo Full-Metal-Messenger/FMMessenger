@@ -20,7 +20,7 @@ import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Chat() {
   const { user } = useAuthContext();
-  const { messages } = useMessage();
+  const { messages, removeMessage } = useMessage();
 
   return (
     <Box
@@ -60,6 +60,9 @@ function Chat() {
                     By: {username} Posted at:{' '}
                     {`${new Date(created_at).toLocaleString()}`}
                   </Text>
+                  {user.id === profile_id && (
+                    <Button onClick={removeMessage}>Delete</Button>
+                  )}
                 </PopoverBody>
               </PopoverContent>
             </Popover>
