@@ -20,7 +20,7 @@ import { mockUser } from './services/testInfo';
 
 const server = setupServer(
   rest.post(
-    `https://kplqqqfafshaldfzhgir.supabase.co/auth/v2/token`,
+    `https://kplqqqfafshaldfzhgir.supabase.co/auth/v1/token`,
     (req, res, ctx) => res(ctx.json(mockUser))
   )
 );
@@ -43,14 +43,21 @@ describe('Sign up Test', () => {
       </ChakraProvider>
     );
 
+    const clickSignUp = await screen.findByText('Sign Up');
+    userEvent.click(clickSignUp);
+
     const email = await screen.findByPlaceholderText('user email');
     userEvent.type(email, 'tom@tom.com');
 
     const password = await screen.findByPlaceholderText('password');
     userEvent.type(password, '111111');
 
-    const username = await screen.findByPlaceholderText('username');
-    userEvent.type(username, 'Tom');
+    const name = await screen.findByPlaceholderText('username');
+    userEvent.type(name, 'Tom');
+
+    const button = await screen.findByLabelText('submit');
+    userEvent.click(button);
+
     screen.debug();
   });
 });

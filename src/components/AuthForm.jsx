@@ -97,7 +97,13 @@ function AuthForm() {
               />
             </FormControl>
           )}
-          <Button type="submit" width="full" mb={6} colorScheme="teal">
+          <Button
+            aria-label="submit"
+            type="submit"
+            width="full"
+            mb={6}
+            colorScheme="teal"
+          >
             {type ? 'Log In' : 'Sign Up'}
           </Button>
           {error && (
