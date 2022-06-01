@@ -9,6 +9,7 @@ function Main() {
   const { handleSubmit, ref } = useMessage();
   return (
     <Box
+      ref={ref}
       display="flex"
       minH="100vh"
       flexDirection="column"

@@ -23,7 +23,7 @@ function useMessage() {
     const data = await getMessages();
     setMessages(data);
     if (ref.current) {
-      ref.current.scrollTo(0, 0);
+      window.scrollTo(0, document.body.scrollHeight);
     }
   };
 
