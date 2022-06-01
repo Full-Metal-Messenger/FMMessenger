@@ -6,6 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { MessageProvider } from './context/MessageContext';
+import userEvent from '@testing-library/user-event';
 
 const Mock = {
   results: {
@@ -18,7 +19,7 @@ const Mock = {
 };
 
 const server = setupServer(
-  rest.get(`${process.env.SUPABASE_URL}/auth`, (req, res, ctx) =>
+  rest.post(`${process.env.SUPABASE_URL}/auth`, (req, res, ctx) =>
     res(ctx.json(Mock))
   )
 );
@@ -41,8 +42,9 @@ describe('Login Test', () => {
       </ChakraProvider>
     );
 
-    const emails = await screen.findByPlaceholderText('user email');
-    expect(emails).toBeInTheDocument();
+    const email = await screen.findByPlaceholderText('user email');
+    userEvent.type(email, 'tom@tom.com');
+
     screen.debug();
   });
 });
