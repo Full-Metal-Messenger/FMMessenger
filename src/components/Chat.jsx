@@ -33,6 +33,13 @@ function Chat() {
             >
               {username}
             </Text>
+            <Text
+              fontSize="xs"
+              color={user.id !== profile_id ? 'blue.300' : 'gray.500'}
+              textAlign="left"
+            >
+              {`${new Date(created_at).toLocaleString()}`}
+            </Text>
           </Box>
         )
       )}
