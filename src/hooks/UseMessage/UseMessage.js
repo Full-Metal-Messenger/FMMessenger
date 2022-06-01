@@ -22,6 +22,7 @@ function useMessage() {
   const getData = async () => {
     const data = await getMessages();
     setMessages(data);
+
     if (ref.current) {
       window.scrollTo(0, document.body.scrollHeight);
     }

@@ -10,9 +10,10 @@ import {
   LinkBox,
   useColorMode,
   useColorModeValue,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { signInUser, signUpUser } from '../services/auth';
@@ -101,9 +102,17 @@ function AuthForm() {
           </Button>
           {error && (
             <Text>
-              {error === 'Database error saving new user'
-                ? 'Username already registered'
-                : error}
+              {error === 'Database error saving new user' ? (
+                <Alert status="error">
+                  <AlertIcon />
+                  'Username already registered'
+                </Alert>
+              ) : (
+                <Alert status="error">
+                  <AlertIcon />
+                  {error}
+                </Alert>
+              )}
             </Text>
           )}
           {!type ? (
