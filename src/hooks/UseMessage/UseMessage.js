@@ -3,6 +3,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import { MessageContext } from '../../context/MessageContext';
 import { client } from '../../services/client';
 import {
+  deleteMessage,
   getMessages,
   postMessage,
   subscribe,
@@ -12,6 +13,10 @@ import {
 function useMessage() {
   const { post, setPost, messages, setMessages } = useContext(MessageContext);
   const ref = useRef(null);
+
+  const removeMessage = async () => {
+    await deleteMessage(id);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +48,7 @@ function useMessage() {
     getData();
   }, []);
 
-  return { handleSubmit, messages, setPost, post, ref };
+  return { handleSubmit, messages, setPost, post, ref, removeMessage };
 }
 
 export default useMessage;
