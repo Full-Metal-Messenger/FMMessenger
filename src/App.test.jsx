@@ -7,20 +7,21 @@ import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { MessageProvider } from './context/MessageContext';
 import userEvent from '@testing-library/user-event';
-
-const Mock = {
-  results: {
-    id: 1,
-    username: 'Bill',
-    // created_at: 01 / 21 / 2022,
-    posts: 'Nice',
-    profile_id: 2,
-  },
-};
+import { mockUser } from './services/testInfo';
+// const Mock = {
+//   results: {
+//     id: 1,
+//     // username: 'Jordan',
+//     // created_at: 01 / 21 / 2022,
+//     posts: 'Nice',
+//     profile_id: 2,
+//   },
+// };
 
 const server = setupServer(
-  rest.post(`${process.env.SUPABASE_URL}/auth`, (req, res, ctx) =>
-    res(ctx.json(Mock))
+  rest.post(
+    `https://kplqqqfafshaldfzhgir.supabase.co/auth/v2/token`,
+    (req, res, ctx) => res(ctx.json(mockUser))
   )
 );
 
@@ -28,8 +29,8 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('Login Test', () => {
-  it('Log user', async () => {
+describe('Sign up Test', () => {
+  it('Sign up user', async () => {
     render(
       <ChakraProvider>
         <AuthProvider>
@@ -48,6 +49,8 @@ describe('Login Test', () => {
     const password = await screen.findByPlaceholderText('password');
     userEvent.type(password, '111111');
 
+    const username = await screen.findByPlaceholderText('username');
+    userEvent.type(username, 'Tom');
     screen.debug();
   });
 });
