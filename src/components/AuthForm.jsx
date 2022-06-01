@@ -48,7 +48,7 @@ function AuthForm() {
         setCurrentUser(data);
         history.push('/');
       }
-    } catch (error) {
+    } catch (e) {
       setError(e.message);
     }
   };
@@ -99,19 +99,38 @@ function AuthForm() {
           <Button type="submit" width="full" mb={6} colorScheme="teal">
             {type ? 'Log In' : 'Sign Up'}
           </Button>
-
+          {error && (
+            <Text>
+              {error === 'Database error saving new user'
+                ? 'Username already registered'
+                : error}
+            </Text>
+          )}
           {!type ? (
             <LinkBox>
               Already Have an account?
               <Text fontWeight="bold">
-                <Link onClick={() => setType(true)}> Sign In</Link>
+                <Link
+                  onClick={() => {
+                    setType(true), setError('');
+                  }}
+                >
+                  {' '}
+                  Sign In
+                </Link>
               </Text>
             </LinkBox>
           ) : (
             <LinkBox>
               Dont have an account?
               <Text fontWeight="bold">
-                <Link onClick={() => setType(false)}>Sign Up</Link>
+                <Link
+                  onClick={() => {
+                    setType(false), setError('');
+                  }}
+                >
+                  Sign Up
+                </Link>
               </Text>
             </LinkBox>
           )}
