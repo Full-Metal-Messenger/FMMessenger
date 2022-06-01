@@ -6,12 +6,13 @@ import MessageInput from '../components/MessageInput';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Main() {
-  const { handleSubmit } = useMessage();
+  const { handleSubmit, ref } = useMessage();
   return (
     <Box
       display="flex"
       minH="100vh"
       flexDirection="column"
+      position="relative"
       justifyItems="center"
       alignItems="stretch"
       flex="1"
@@ -27,11 +28,11 @@ function Main() {
         alignItems="stretch"
         textAlign="center"
       >
-        <Box display="flex" flex="1" flexDirection="column">
+        <Box display="flex" flex="1" flexDirection="column" maxH="100%">
           <Chat />
         </Box>
       </Box>
-      <Box>
+      <Box position="sticky" bottom="0" bg="#1a202c">
         <MessageInput callBack={handleSubmit} />
       </Box>
     </Box>

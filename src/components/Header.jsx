@@ -20,11 +20,27 @@ export default function Header() {
   };
 
   return (
-    <Flex flex="1" maxH="50px" justifyContent="space-between" mb="20px">
+    <Flex
+      flex="1"
+      position="sticky"
+      top="0"
+      left="0"
+      h="100px"
+      justifyContent="space-between"
+      mb="20px"
+      bg="#1a202c"
+      boxShadow="lg"
+    >
       <Profiles />
 
-      {user && <Button onClick={handleSubmit}>LogOut</Button>}
-      <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
+      {user && (
+        <Button m="5" onClick={handleSubmit}>
+          LogOut
+        </Button>
+      )}
+      <Button m="5" onClick={toggleColorMode}>
+        Toggle Dark Theme
+      </Button>
     </Flex>
   );
 }

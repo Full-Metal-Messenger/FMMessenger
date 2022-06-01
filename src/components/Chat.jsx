@@ -5,7 +5,7 @@ import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Chat() {
   const { user } = useAuthContext();
-  const { messages } = useMessage();
+  const { messages, ref } = useMessage();
   return (
     <Box
       display="flex"
@@ -17,6 +17,7 @@ function Chat() {
       {messages.map(
         ({ id, created_at, posts, profile_id, profiles: { username } }) => (
           <Box
+            ref={ref}
             key={id}
             border="1px"
             borderRadius="18px"

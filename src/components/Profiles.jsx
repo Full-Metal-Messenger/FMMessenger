@@ -22,7 +22,7 @@ export default function Profiles() {
   const { person } = useProfiles();
   return (
     <Box>
-      <Button colorScheme="blue" onClick={onOpen}>
+      <Button m="5" colorScheme="blue" onClick={onOpen}>
         Friends
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
