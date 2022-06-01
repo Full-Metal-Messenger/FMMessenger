@@ -9,6 +9,7 @@ function MessageInput({ callBack }) {
       <form onSubmit={callBack}>
         <FormControl display="flex" justifySelf="end" p="2">
           <Input
+            onFocus={() => window.scrollTo(0, document.body.scrollHeight)}
             px="10"
             type="text"
             value={post}
