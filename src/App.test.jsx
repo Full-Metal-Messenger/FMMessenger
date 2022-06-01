@@ -45,6 +45,9 @@ describe('Login Test', () => {
     const email = await screen.findByPlaceholderText('user email');
     userEvent.type(email, 'tom@tom.com');
 
+    const password = await screen.findByPlaceholderText('password');
+    userEvent.type(password, '111111');
+
     screen.debug();
   });
 });
