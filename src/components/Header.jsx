@@ -51,6 +51,7 @@ export default function Header() {
       mb="20px"
       bg="#1a202c"
       boxShadow="lg"
+      zIndex={2}
     >
       <Profiles />
 

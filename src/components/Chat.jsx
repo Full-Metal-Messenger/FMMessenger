@@ -43,9 +43,9 @@ function Chat() {
             m="2"
             alignSelf={user.id !== profile_id ? 'flex-start' : 'flex-end'}
             bg={user.id === profile_id ? 'blue.300' : 'gray.500'}
-            zIndex={-1}
+            zIndex={1}
           >
-            <Popover>
+            <Popover placement={user.id !== profile_id ? 'right' : 'left'}>
               <PopoverTrigger>
                 <Text>
                   <Button variant="ghost">{posts}</Button>
