@@ -24,14 +24,14 @@ function RoomsList() {
   }, []);
 
   useEffect(() => {
-    client
+    const sub = client
       .from('rooms')
       .on('INSERT', () => {
         getData();
       })
       .subscribe();
 
-    return () => unsubscribe();
+    return () => client.removeSubscription(sub);
   }, []);
 
   return (

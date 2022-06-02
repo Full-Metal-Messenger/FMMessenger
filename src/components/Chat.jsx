@@ -45,27 +45,7 @@ function Chat() {
             bg={user.id === profile_id ? 'blue.300' : 'gray.500'}
             zIndex={1}
           >
-            <Popover placement={user.id !== profile_id ? 'right' : 'left'}>
-              <PopoverTrigger>
-                <Text>
-                  <Button variant="ghost">{posts}</Button>
-                </Text>
-              </PopoverTrigger>
-              <PopoverContent>
-                {' '}
-                <PopoverCloseButton />
-                <PopoverHeader>{posts}</PopoverHeader>
-                <PopoverBody>
-                  <Text>
-                    By: {username} Posted at:{' '}
-                    {`${new Date(created_at).toLocaleString()}`}
-                  </Text>
-                  {user.id === profile_id && (
-                    <Button onClick={removeMessage}>Delete</Button>
-                  )}
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
+            <Text>{posts}</Text>
 
             <Text
               fontSize="xs"
@@ -88,6 +68,5 @@ function Chat() {
     </Box>
   );
 }
-
 
 export default Chat;
