@@ -38,7 +38,7 @@ export default function Profiles() {
                 cursor="pointer"
                 as="p"
                 textDecoration="underline"
-                onClick={() => handleToggle(id, username)}
+                onClick={() => handleToggle(id, username, onClose)}
                 key={id}
               >
                 {username}

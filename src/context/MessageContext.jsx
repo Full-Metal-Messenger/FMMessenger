@@ -10,9 +10,10 @@ export const MessageProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [popOpen, setPopOpen] = useState({ open: false, id: null, name: null });
 
-  const handleToggle = (id, name) => {
+  const handleToggle = (id, name, close) => {
     // const button = addRef.current;
     // console.log(button);
+    close();
     setPopOpen({ open: true, id: id, name: name });
   };
 
