@@ -16,6 +16,8 @@ import {
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import useChat from '../hooks/useChat/useChat';
+// import { useChat } from '../hooks/useChat/useChat';
 import { signInUser, signUpUser } from '../services/auth';
 
 function AuthForm() {
@@ -36,6 +38,8 @@ function AuthForm() {
     setusername,
     setCurrentUser,
   } = useAuthContext();
+  const { setToastMessage } = useChat();
+  // const { toastAlert, setToastAlert } = useToastMessage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,10 +47,18 @@ function AuthForm() {
       if (type) {
         const data = await signInUser(email, password);
         setCurrentUser(data);
+        // setToastMessage('Welcom Back.');
+        // setToastAlert({ message: 'Welcome Back.', status: 'info' });
+        // setToastAlert();
+
         history.push('/');
       } else {
         const data = await signUpUser({ email, password }, username);
         setCurrentUser(data);
+        // setToastMessage(
+        //   'Congratulations on beginning your journey into the fantastic arts'
+        // );
+
         history.push('/');
       }
     } catch (e) {

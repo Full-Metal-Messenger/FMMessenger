@@ -3,10 +3,11 @@ import React from 'react';
 import Chat from '../components/Chat';
 import Header from '../components/Header';
 import MessageInput from '../components/MessageInput';
+import RoomsList from '../components/RoomsList';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Main() {
-  const { handleSubmit, ref } = useMessage();
+  const { ref } = useMessage();
   return (
     <Box
       ref={ref}
@@ -34,8 +35,9 @@ function Main() {
         </Box>
       </Box>
       <Box position="sticky" bottom="0" bg="#1a202c">
-        <MessageInput callBack={handleSubmit} />
+        <MessageInput />
       </Box>
+      <RoomsList />
     </Box>
   );
 }

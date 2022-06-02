@@ -16,10 +16,23 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import useRooms from '../hooks/useRooms';
+import { useHistory } from 'react-router-dom';
+import { createRoom } from '../services/rooms';
 
 function NewRoomPop() {
+  const history = useHistory();
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const { handleCreate, setRoomName, roomName } = useRooms();
+  const { setRoomName, roomName } = useRooms();
+
+  const handleCreate = async () => {
+    const data = await createRoom(roomName);
+    console.log(data.name);
+    setRoomName('');
+    onClose();
+    console.log('id', data.id);
+    history.push(`/${data.id}`);
+    return data;
+  };
   return (
     <>
       <Button m="5" onClick={onToggle}>
