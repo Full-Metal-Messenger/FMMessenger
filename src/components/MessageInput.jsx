@@ -20,10 +20,12 @@ function MessageInput({ callBack }) {
             onFocus={() => window.scrollTo(0, document.body.scrollHeight)}
             px="10"
             type="text"
+            aria-label="message"
             value={post}
             onChange={(e) => setPost(e.target.value)}
           />
           <Button
+            aria-label="Add New Entry"
             type="submit"
             onClick={() =>
               toast({
