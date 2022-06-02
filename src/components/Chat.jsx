@@ -1,27 +1,11 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Text,
-  Tooltip,
-} from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-import { FaMoon } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Chat() {
   const { user } = useAuthContext();
-  const { messages, removeMessage } = useMessage();
-
+  const { messages } = useMessage();
   return (
     <Box
       display="flex"
@@ -29,9 +13,6 @@ function Chat() {
       flexDirection="column"
       justifyContent="end"
       p="4"
-      maxW="99%"
-      mx="auto"
-      minW="40%"
     >
       {messages.map(
         ({ id, created_at, posts, profile_id, profiles: { username } }) => (
@@ -43,30 +24,8 @@ function Chat() {
             m="2"
             alignSelf={user.id !== profile_id ? 'flex-start' : 'flex-end'}
             bg={user.id === profile_id ? 'blue.300' : 'gray.500'}
-            zIndex={1}
           >
-            <Popover placement={user.id !== profile_id ? 'right' : 'left'}>
-              <PopoverTrigger>
-                <Text>
-                  <Button variant="ghost">{posts}</Button>
-                </Text>
-              </PopoverTrigger>
-              <PopoverContent>
-                {' '}
-                <PopoverCloseButton />
-                <PopoverHeader>{posts}</PopoverHeader>
-                <PopoverBody>
-                  <Text>
-                    By: {username} Posted at:{' '}
-                    {`${new Date(created_at).toLocaleString()}`}
-                  </Text>
-                  {user.id === profile_id && (
-                    <Button onClick={removeMessage}>Delete</Button>
-                  )}
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-
+            <Text>{posts}</Text>
             <Text
               fontSize="xs"
               color={user.id !== profile_id ? 'blue.300' : 'gray.500'}
@@ -74,7 +33,6 @@ function Chat() {
             >
               {username}
             </Text>
-
             <Text
               fontSize="xs"
               color={user.id !== profile_id ? 'blue.300' : 'gray.500'}
@@ -87,20 +45,6 @@ function Chat() {
       )}
     </Box>
   );
-}
-
-{
-  /* <Popover>
-  <PopoverTrigger>
-    <Button>Trigger</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverHeader>Confirmation!</PopoverHeader>
-    <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
-  </PopoverContent>
-</Popover>; */
 }
 
 export default Chat;
