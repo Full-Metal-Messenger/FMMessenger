@@ -9,8 +9,10 @@ import {
   subscribe,
   unsubscribe,
 } from '../../services/messages';
+// import useChat from '../useChat/useChat';
 
 function useMessage() {
+  // const { setToastMessage } = useChat();
   const { post, setPost, messages, setMessages } = useContext(MessageContext);
   const ref = useRef(null);
 
@@ -21,6 +23,7 @@ function useMessage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await postMessage(post);
+    // setToastMessage('Message sent');
     setPost('');
   };
 
