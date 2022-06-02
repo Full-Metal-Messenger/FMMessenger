@@ -43,7 +43,7 @@ function useMessage() {
 
   useEffect(() => {
     client
-      .from(`messages`)
+      .from(`messages:room_id=eq.${id}`)
       .on('INSERT', () => {
         getData(id);
       })
