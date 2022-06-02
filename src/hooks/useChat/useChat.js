@@ -23,8 +23,8 @@ export default function useChat() {
     }
   }, [toastMessage, toast]);
 
-  // return { setToastMessage };
-  return ([setToastMessage, setPlacement, setType] = toastParams);
+  return { setToastMessage };
+  // return ([setToastMessage, setPlacement, setType] = toastParams);
 
   // setToastMessage('welcome', 'bottom', 'info');
 }
