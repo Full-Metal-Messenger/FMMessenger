@@ -43,7 +43,7 @@ function Chat() {
             m="2"
             alignSelf={user.id !== profile_id ? 'flex-start' : 'flex-end'}
             bg={user.id === profile_id ? 'blue.300' : 'gray.500'}
-            zIndex={1}
+            ndex={1}
           >
             <Text>{posts}</Text>
 

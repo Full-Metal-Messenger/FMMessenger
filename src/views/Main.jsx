@@ -37,7 +37,6 @@ function Main() {
       <Box position="sticky" bottom="0" bg="#1a202c">
         <MessageInput />
       </Box>
-      <RoomsList />
     </Box>
   );
 }
