@@ -13,3 +13,12 @@ export async function getRoomId() {
   console.log('this', body);
   return parseData(body);
 }
+
+export async function addToRoom(room_id, profile_id) {
+  const resp = await client
+    .from('rooms_participants')
+    .insert({ room_id: room_id, profile_id: profile_id })
+    .single();
+  console.log('resp for insert', resp);
+  return parseData(resp);
+}

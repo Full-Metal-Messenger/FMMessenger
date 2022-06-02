@@ -1,43 +1,48 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
+import AddTooRoomPop from '../components/AddTooRoomPop';
 import Chat from '../components/Chat';
 import Header from '../components/Header';
 import MessageInput from '../components/MessageInput';
+import NewRoomPop from '../components/NewRoomPop';
 import RoomsList from '../components/RoomsList';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function Main() {
   const { ref } = useMessage();
   return (
-    <Box
-      ref={ref}
-      display="flex"
-      minH="100vh"
-      flexDirection="column"
-      position="relative"
-      justifyItems="center"
-      alignItems="stretch"
-      flex="1"
-      py="2"
-    >
-      <Header />
+    <>
       <Box
-        w="100%"
+        ref={ref}
         display="flex"
-        flex="1"
+        minH="100vh"
         flexDirection="column"
+        position="relative"
         justifyItems="center"
         alignItems="stretch"
-        textAlign="center"
+        flex="1"
+        py="2"
       >
-        <Box display="flex" flex="1" flexDirection="column" maxH="100%">
-          <Chat />
+        <Header />
+        <Box
+          w="100%"
+          display="flex"
+          flex="1"
+          flexDirection="column"
+          justifyItems="center"
+          alignItems="stretch"
+          textAlign="center"
+        >
+          <Box display="flex" flex="1" flexDirection="column" maxH="100%">
+            <Chat />
+          </Box>
+        </Box>
+        <Box position="sticky" bottom="0" bg="#1a202c">
+          <MessageInput />
+          <AddTooRoomPop />
         </Box>
       </Box>
-      <Box position="sticky" bottom="0" bg="#1a202c">
-        <MessageInput />
-      </Box>
-    </Box>
+    </>
   );
 }
 
