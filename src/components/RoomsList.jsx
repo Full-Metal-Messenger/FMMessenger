@@ -25,6 +25,10 @@ function RoomsList() {
   const { loading, setLoading } = useContext(MessageContext);
   const [room, setRoom] = useState([]);
 
+  const handleClick = () => {
+    onClose();
+  };
+
   const getData = async () => {
     const { body } = await client.from('rooms').select();
     setRoom(body);
@@ -65,7 +69,7 @@ function RoomsList() {
               <p>loading</p>
             ) : (
               room?.map(({ id, name }) => (
-                <Text key={id}>
+                <Text onClick={handleClick} key={id}>
                   <Link to={`/${id}`}>{name}</Link>
                 </Text>
               ))
