@@ -9,6 +9,7 @@ export const MessageProvider = ({ children }) => {
   const [fetchedRoom, setFetchedRoom] = useState({ id: 1 });
   const [loading, setLoading] = useState(true);
   const [popOpen, setPopOpen] = useState({ open: false, id: null, name: null });
+  const [globalRoom, setGlobalRoom] = useState([]);
 
   const handleToggle = (id, name, close) => {
     // const button = addRef.current;
@@ -33,6 +34,8 @@ export const MessageProvider = ({ children }) => {
         popOpen,
         setPopOpen,
         handleToggle,
+        setGlobalRoom,
+        globalRoom,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ import {
 
 function RoomsList() {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const { setGlobalRoom } = useContext(MessageContext);
   const [placement, setPlacement] = useState('left');
   const { loading, setLoading } = useContext(MessageContext);
   const [room, setRoom] = useState([]);
@@ -27,11 +28,13 @@ function RoomsList() {
   const getData = async () => {
     const { body } = await client.from('rooms').select();
     setRoom(body);
+    setGlobalRoom(body);
   };
   useEffect(() => {
     const fetchData = async () => {
       const { body } = await client.from('rooms').select();
       setRoom(body);
+      setGlobalRoom(body);
       setLoading(false);
     };
     fetchData();
