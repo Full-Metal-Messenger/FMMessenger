@@ -113,7 +113,13 @@ function AuthForm() {
               />
             </FormControl>
           )}
-          <Button type="submit" width="full" mb={6} colorScheme="teal">
+          <Button
+            type="submit"
+            name="submit"
+            width="full"
+            mb={6}
+            colorScheme="teal"
+          >
             {type ? 'Log In' : 'Sign Up'}
           </Button>
           {error && (
