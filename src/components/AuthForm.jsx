@@ -32,7 +32,8 @@ function AuthForm() {
     setusername,
     setCurrentUser,
   } = useAuthContext();
-  const { setToastMessage } = useChat();
+  // const { setToastMessage, setPlacement, setKind } = useChat();
+  const { setToastMessage, toastMessage } = useChat();
   // const { toastAlert, setToastAlert } = useToastMessage();
 
   const handleSubmit = async (e) => {
@@ -41,17 +42,27 @@ function AuthForm() {
       if (type) {
         const data = await signInUser(email, password);
         setCurrentUser(data);
-        // setToastMessage('Welcom Back.');
-        // setToastAlert({ message: 'Welcome Back.', status: 'info' });
-        // setToastAlert();
+        // setToastMessage('Welcome Back.');
+        // // setPlacement('bottom');
+        // setKind('success');
 
+        // setKind('in')
+
+        setToastMessage({
+          position: 'top',
+          description: `Welcome Back.`,
+          status: 'info',
+          // icon: FaMoon,
+        });
         history.push('/');
       } else {
         const data = await signUpUser({ email, password }, username);
         setCurrentUser(data);
-        // setToastMessage(
-        //   'Congratulations on beginning your journey into the fantastic arts'
-        // );
+        setToastMessage({
+          position: 'top',
+          description: `Congratulations ${username}! Your FMM account has been registered.`,
+          status: 'success',
+        });
 
         history.push('/');
       }

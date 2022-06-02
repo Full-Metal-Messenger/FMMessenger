@@ -18,18 +18,23 @@ import {
 import useRooms from '../hooks/useRooms';
 import { useHistory } from 'react-router-dom';
 import { createRoom } from '../services/rooms';
+import useChat from '../hooks/useChat/useChat';
 
 function NewRoomPop() {
   const history = useHistory();
   const { isOpen, onToggle, onClose } = useDisclosure();
   const { setRoomName, roomName } = useRooms();
+  const { setToastMessage } = useChat();
 
   const handleCreate = async () => {
     const data = await createRoom(roomName);
-    console.log(data.name);
     setRoomName('');
     onClose();
-    console.log('id', data.id);
+    setToastMessage({
+      position: 'top',
+      description: `${roomName} Created Successfully`,
+      status: 'success',
+    });
     history.push(`/${data.id}`);
     return data;
   };
