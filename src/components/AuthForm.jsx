@@ -10,11 +10,12 @@ import {
   LinkBox,
   Alert,
   AlertIcon,
+  useToast,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import useChat from '../hooks/useToast/useToast';
+import useToastAlert from '../hooks/useToast/useToastAlert';
 import { signInUser, signUpUser } from '../services/auth';
 
 function AuthForm() {
@@ -33,7 +34,7 @@ function AuthForm() {
     setCurrentUser,
   } = useAuthContext();
 
-  const { setToastMessage } = useChat();
+  const { setToastMessage } = useToastAlert();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
