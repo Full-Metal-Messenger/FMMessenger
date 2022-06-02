@@ -43,16 +43,15 @@ function useMessage() {
   };
 
   useEffect(() => {
-    client
-
+    const sub = client
       .from(`messages:room_id=eq.${id}`)
       .on('INSERT', () => {
         getData(id);
       })
       .subscribe();
 
-    return () => unsubscribe();
-  }, []);
+    return () => client.removeSubscription(sub);
+  }, [id]);
 
   useEffect(() => {
     getData(id);
