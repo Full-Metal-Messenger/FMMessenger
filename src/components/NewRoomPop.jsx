@@ -18,7 +18,7 @@ import {
 import useRooms from '../hooks/useRooms';
 import { useHistory } from 'react-router-dom';
 import { createRoom } from '../services/rooms';
-import useChat from '../hooks/useChat/useChat';
+import useChat from '../hooks/useToast/useToast';
 
 function NewRoomPop() {
   const history = useHistory();

@@ -6,7 +6,7 @@ export default function useChat() {
 
   const toast = useToast();
 
-  const { position, description, status, icon } = toastMessage;
+  const { position, description, status } = toastMessage;
 
   useEffect(() => {
     if (toastMessage) {
@@ -16,7 +16,6 @@ export default function useChat() {
         status: status,
         duration: 2000,
         isClosable: true,
-        // icon: icon,
       });
     }
   }, [toastMessage, toast]);

@@ -14,7 +14,7 @@ import {
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import useChat from '../hooks/useChat/useChat';
+import useChat from '../hooks/useToast/useToast';
 import { signInUser, signUpUser } from '../services/auth';
 
 function AuthForm() {
@@ -32,9 +32,8 @@ function AuthForm() {
     setusername,
     setCurrentUser,
   } = useAuthContext();
-  // const { setToastMessage, setPlacement, setKind } = useChat();
-  const { setToastMessage, toastMessage } = useChat();
-  // const { toastAlert, setToastAlert } = useToastMessage();
+
+  const { setToastMessage } = useChat();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,17 +41,11 @@ function AuthForm() {
       if (type) {
         const data = await signInUser(email, password);
         setCurrentUser(data);
-        // setToastMessage('Welcome Back.');
-        // // setPlacement('bottom');
-        // setKind('success');
-
-        // setKind('in')
 
         setToastMessage({
           position: 'top',
           description: `Welcome Back.`,
           status: 'info',
-          // icon: FaMoon,
         });
         history.push('/');
       } else {
@@ -113,13 +106,7 @@ function AuthForm() {
               />
             </FormControl>
           )}
-          <Button
-            type="submit"
-            name="submit"
-            width="full"
-            mb={6}
-            colorScheme="teal"
-          >
+          <Button type="submit" width="full" mb={6} colorScheme="teal">
             {type ? 'Log In' : 'Sign Up'}
           </Button>
           {error && (
