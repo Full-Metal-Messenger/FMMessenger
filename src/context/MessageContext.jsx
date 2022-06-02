@@ -8,6 +8,13 @@ export const MessageProvider = ({ children }) => {
   const [roomName, setRoomName] = useState('');
   const [fetchedRoom, setFetchedRoom] = useState({ id: 1 });
   const [loading, setLoading] = useState(true);
+  const [popOpen, setPopOpen] = useState({ open: false, id: null, name: null });
+
+  const handleToggle = (id, name) => {
+    // const button = addRef.current;
+    // console.log(button);
+    setPopOpen({ open: true, id: id, name: name });
+  };
 
   return (
     <MessageContext.Provider
@@ -22,6 +29,9 @@ export const MessageProvider = ({ children }) => {
         setFetchedRoom,
         loading,
         setLoading,
+        popOpen,
+        setPopOpen,
+        handleToggle,
       }}
     >
       {children}

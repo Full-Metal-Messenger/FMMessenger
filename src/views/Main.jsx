@@ -1,8 +1,10 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
+import AddTooRoomPop from '../components/AddTooRoomPop';
 import Chat from '../components/Chat';
 import Header from '../components/Header';
 import MessageInput from '../components/MessageInput';
+import NewRoomPop from '../components/NewRoomPop';
 import RoomsList from '../components/RoomsList';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
@@ -35,6 +37,7 @@ function Main() {
         </Box>
       </Box>
       <Box position="sticky" bottom="0" bg="#1a202c">
+        <AddTooRoomPop />
         <MessageInput />
       </Box>
     </Box>
