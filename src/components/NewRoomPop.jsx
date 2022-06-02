@@ -29,6 +29,7 @@ function NewRoomPop() {
     console.log(data.name);
     setRoomName('');
     onClose();
+    console.log('id', data.id);
     history.push(`/${data.id}`);
     return data;
   };
