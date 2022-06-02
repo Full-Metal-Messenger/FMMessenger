@@ -19,19 +19,6 @@ function useRooms() {
     return data;
   };
 
-  // if (!fetchedRoom) {
-  //   return;
-  // }
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await getRoomId();
-  //     console.log('roomID', data);
-  //     setFetchedRoom(data);
-  //     setLoading(false);
-  //   };
-  //   fetchData();
-  // }, []);
-
   return { handleCreate, roomName, setRoomName };
 }
 

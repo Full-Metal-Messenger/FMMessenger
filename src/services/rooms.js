@@ -8,7 +8,7 @@ export async function createRoom(name) {
 }
 
 export async function getRoomId() {
-  const { body } = await client.from('rooms').select().single();
+  const { body } = await client.from('rooms').select();
 
   console.log('this', body);
   return parseData(body);

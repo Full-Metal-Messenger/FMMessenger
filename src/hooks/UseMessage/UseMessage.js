@@ -54,7 +54,7 @@ function useMessage() {
 
   useEffect(() => {
     getData(id);
-  }, []);
+  }, [id]);
 
   return { handleSubmit, messages, setPost, post, ref, removeMessage };
 }
