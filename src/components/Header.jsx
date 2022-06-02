@@ -7,6 +7,7 @@ import { logout } from '../services/auth';
 import NewRoomPop from './NewRoomPop';
 import Profiles from './Profiles';
 import { useState } from 'react';
+import RoomsList from './RoomsList';
 
 export default function Header() {
   const { toggleColorMode } = useColorMode();
@@ -35,10 +36,10 @@ export default function Header() {
       mb="20px"
       bg="#1a202c"
       boxShadow="lg"
-      zIndex={2}
+      ndex={2}
     >
+      <RoomsList />
       <Profiles />
-
       {user && (
         <Button m="5" onClick={handleSubmit}>
           LogOut

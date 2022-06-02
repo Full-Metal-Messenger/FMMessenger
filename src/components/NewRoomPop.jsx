@@ -58,7 +58,9 @@ function NewRoomPop() {
           </PopoverBody>
           <PopoverFooter display="flex" justifyContent="flex-end">
             <ButtonGroup size="sm">
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline" onClick={onClose}>
+                Cancel
+              </Button>
               <Button colorScheme="red" onClick={handleCreate}>
                 Apply
               </Button>

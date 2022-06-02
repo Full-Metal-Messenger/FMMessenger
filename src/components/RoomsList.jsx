@@ -5,8 +5,22 @@ import { MessageContext } from '../context/MessageContext';
 import { client } from '../services/client';
 import { unsubscribe } from '../services/messages';
 import { getRoomId } from '../services/rooms';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Button,
+  Box,
+} from '@chakra-ui/react';
 
 function RoomsList() {
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const [placement, setPlacement] = useState('left');
   const { loading, setLoading } = useContext(MessageContext);
   const [room, setRoom] = useState([]);
 
@@ -35,18 +49,28 @@ function RoomsList() {
   }, []);
 
   return (
-    <div>
-      {/* <Link to="/21649a82-c86b-4b10-a230-f4f20bdfd5fa">Main</Link> */}
-      {loading ? (
-        <p>loading</p>
-      ) : (
-        room?.map(({ id, name }) => (
-          <Text key={id}>
-            <Link to={`/${id}`}>{name}</Link>
-          </Text>
-        ))
-      )}
-    </div>
+    <Box>
+      <Button m="5" colorScheme="blue" onClick={onOpen}>
+        Chat Rooms
+      </Button>
+      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader borderBottomWidth="1px">Chat Rooms</DrawerHeader>
+          <DrawerBody>
+            {loading ? (
+              <p>loading</p>
+            ) : (
+              room?.map(({ id, name }) => (
+                <Text key={id}>
+                  <Link to={`/${id}`}>{name}</Link>
+                </Text>
+              ))
+            )}
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </Box>
   );
 }
 
