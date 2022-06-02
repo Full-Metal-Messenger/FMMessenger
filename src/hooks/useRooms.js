@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MessageContext } from '../context/MessageContext';
-import { createRoom } from '../services/rooms';
+import { createRoom, getRoomId } from '../services/rooms';
 
 function useRooms() {
-  const { roomName, setRoomName } = useContext(MessageContext);
-  const handleCreate = async () => {
-    await createRoom(roomName);
-  };
-  return { handleCreate, roomName, setRoomName };
+  const {
+    roomName,
+    setRoomName,
+    setFetchedRoom,
+    setLoading,
+    fetchedRoom,
+    history,
+  } = useContext(MessageContext);
+
+  return { roomName, setRoomName };
 }
 
 export default useRooms;
