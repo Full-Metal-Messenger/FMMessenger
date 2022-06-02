@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
   ButtonGroup,
-  Flex,
   Input,
   Popover,
   PopoverArrow,
@@ -11,20 +10,18 @@ import {
   PopoverContent,
   PopoverFooter,
   PopoverHeader,
-  PopoverTrigger,
-  useColorMode,
   useDisclosure,
 } from '@chakra-ui/react';
 import useRooms from '../hooks/useRooms';
 import { useHistory } from 'react-router-dom';
 import { createRoom } from '../services/rooms';
-import useChat from '../hooks/useToast/useToast';
+import useToastAlert from '../hooks/useToast/useToastAlert';
 
 function NewRoomPop() {
   const history = useHistory();
   const { isOpen, onToggle, onClose } = useDisclosure();
   const { setRoomName, roomName } = useRooms();
-  const { setToastMessage } = useChat();
+  const { setToastMessage } = useToastAlert();
 
   const handleCreate = async () => {
     const data = await createRoom(roomName);

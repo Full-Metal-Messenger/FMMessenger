@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-export default function useChat() {
+export default function useToastAlert() {
   const [toastMessage, setToastMessage] = useState('');
 
   const toast = useToast();

@@ -1,25 +1,18 @@
 import { useContext, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuthContext } from '../../context/AuthContext';
 import { MessageContext } from '../../context/MessageContext';
 import { client } from '../../services/client';
 import {
   deleteMessage,
   getMessages,
   postMessage,
-  subscribe,
-  unsubscribe,
 } from '../../services/messages';
-// import useChat from '../useChat/useChat';
+import useToastAlert from '../useToast/useToastAlert';
 
 function useMessage() {
-  const { post, setPost, messages, setMessages, fetchedRoom, loading } =
-    useContext(MessageContext);
+  const { post, setPost, messages, setMessages } = useContext(MessageContext);
   const { id } = useParams();
-  // if (loading) {
-  //   console.log('loading');
-  // }
-  // console.log('id', fetchedRoom);
+  const { setToastMessage } = useToastAlert();
 
   const ref = useRef(null);
 
@@ -31,6 +24,11 @@ function useMessage() {
     e.preventDefault();
     await postMessage(post, id);
     setPost('');
+    setToastMessage({
+      position: 'top',
+      description: 'Message Sent',
+      status: 'success',
+    });
   };
 
   const getData = async (id) => {
