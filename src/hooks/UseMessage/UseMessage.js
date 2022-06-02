@@ -10,6 +10,7 @@ import {
   subscribe,
   unsubscribe,
 } from '../../services/messages';
+// import useChat from '../useChat/useChat';
 
 function useMessage() {
   const { post, setPost, messages, setMessages, fetchedRoom, loading } =
@@ -43,7 +44,8 @@ function useMessage() {
 
   useEffect(() => {
     client
-      .from(`messages`)
+
+      .from(`messages:room_id=eq.${id}`)
       .on('INSERT', () => {
         getData(id);
       })

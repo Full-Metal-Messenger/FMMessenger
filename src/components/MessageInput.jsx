@@ -9,12 +9,13 @@ import {
 import React from 'react';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
-function MessageInput({ callBack }) {
+function MessageInput() {
   const toast = useToast();
   const { post, setPost } = useMessage();
+  const { handleSubmit, ref } = useMessage();
   return (
     <Box>
-      <form onSubmit={callBack}>
+      <form onSubmit={handleSubmit}>
         <FormControl display="flex" justifySelf="end" p="2">
           <Input
             onFocus={() => window.scrollTo(0, document.body.scrollHeight)}
