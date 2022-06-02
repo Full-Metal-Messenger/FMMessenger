@@ -36,7 +36,6 @@ export default function Header() {
       mb="20px"
       bg="#1a202c"
       boxShadow="lg"
-      ndex={2}
     >
       <RoomsList />
       <Profiles />
@@ -51,7 +50,7 @@ export default function Header() {
           setLight(!light), toggleColorMode();
         }}
       >
-        {light ? <FaMoon /> : <FaSun />}
+        {!light ? <FaMoon /> : <FaSun />}
       </Button>
       <NewRoomPop />
     </Flex>
