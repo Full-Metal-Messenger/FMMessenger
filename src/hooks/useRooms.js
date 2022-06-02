@@ -1,12 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MessageContext } from '../context/MessageContext';
-import { createRoom } from '../services/rooms';
+import { createRoom, getRoomId } from '../services/rooms';
 
 function useRooms() {
-  const { roomName, setRoomName } = useContext(MessageContext);
+  const {
+    roomName,
+    setRoomName,
+    setFetchedRoom,
+    setLoading,
+    fetchedRoom,
+    history,
+  } = useContext(MessageContext);
+
   const handleCreate = async () => {
-    await createRoom(roomName);
+    const data = await createRoom(roomName);
+    console.log(data.name);
+    // history.push(`/${data.name}`);
+    return data;
   };
+
+  // if (!fetchedRoom) {
+  //   return;
+  // }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getRoomId();
+  //     console.log('roomID', data);
+  //     setFetchedRoom(data);
+  //     setLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
+
   return { handleCreate, roomName, setRoomName };
 }
 

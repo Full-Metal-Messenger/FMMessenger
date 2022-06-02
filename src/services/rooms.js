@@ -6,3 +6,10 @@ export async function createRoom(name) {
   console.log('respCreate', resp);
   return parseData(resp);
 }
+
+export async function getRoomId() {
+  const { body } = await client.from('rooms').select().single();
+
+  console.log('this', body);
+  return parseData(body);
+}
