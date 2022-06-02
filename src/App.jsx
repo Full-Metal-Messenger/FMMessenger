@@ -3,6 +3,7 @@ import Auth from './views/Auth';
 import { Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
 import Header from './components/Header';
+import Landing from './views/Landing';
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
           <Main />
         </PrivateRoute>
         <PrivateRoute path="/">
-          <Main />
+          <Landing />
         </PrivateRoute>
       </Switch>
     </>
