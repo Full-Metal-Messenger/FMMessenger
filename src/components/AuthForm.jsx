@@ -14,7 +14,7 @@ import {
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import useChat from '../hooks/useChat/useChat';
+import useChat from '../hooks/useToast/useToast';
 import { signInUser, signUpUser } from '../services/auth';
 
 function AuthForm() {
@@ -32,8 +32,8 @@ function AuthForm() {
     setusername,
     setCurrentUser,
   } = useAuthContext();
+
   const { setToastMessage } = useChat();
-  // const { toastAlert, setToastAlert } = useToastMessage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,17 +41,21 @@ function AuthForm() {
       if (type) {
         const data = await signInUser(email, password);
         setCurrentUser(data);
-        // setToastMessage('Welcom Back.');
-        // setToastAlert({ message: 'Welcome Back.', status: 'info' });
-        // setToastAlert();
 
+        setToastMessage({
+          position: 'top',
+          description: `Welcome Back.`,
+          status: 'info',
+        });
         history.push('/');
       } else {
         const data = await signUpUser({ email, password }, username);
         setCurrentUser(data);
-        // setToastMessage(
-        //   'Congratulations on beginning your journey into the fantastic arts'
-        // );
+        setToastMessage({
+          position: 'top',
+          description: `Congratulations ${username}! Your FMM account has been registered.`,
+          status: 'success',
+        });
 
         history.push('/');
       }
@@ -102,13 +106,7 @@ function AuthForm() {
               />
             </FormControl>
           )}
-          <Button
-            type="submit"
-            name="submit"
-            width="full"
-            mb={6}
-            colorScheme="teal"
-          >
+          <Button type="submit" width="full" mb={6} colorScheme="teal">
             {type ? 'Log In' : 'Sign Up'}
           </Button>
           {error && (
