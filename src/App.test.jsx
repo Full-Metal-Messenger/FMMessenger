@@ -38,7 +38,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('Sign up Test', () => {
-  it.skip('Sign up user', async () => {
+  it('Sign up user', async () => {
     render(
       <ChakraProvider>
         <AuthProvider>
@@ -71,22 +71,5 @@ describe('Sign up Test', () => {
     const chat = await screen.findByText('Chat Rooms');
     userEvent.click(chat);
     await screen.findByText('loading');
-    await screen.findByText('main');
-    screen.debug();
-
-    const entry = await screen.findByPlaceholderText(
-      'Transmutaton starts here'
-      // {},
-      // { timeout: 3000 }
-    );
-    userEvent.type(entry, 'fake entry');
-
-    const add = await screen.findByLabelText('Add New Entry');
-
-    userEvent.click(add);
-
-    const data = await screen.findByText('fake entry');
-    expect(data).toBeInTheDocument();
-    screen.debug();
   });
 });
