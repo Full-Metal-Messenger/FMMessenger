@@ -18,6 +18,7 @@ function MessageInput() {
       <form onSubmit={handleSubmit}>
         <FormControl display="flex" justifySelf="end" p="2">
           <Input
+            placeholder="Transmutation starts here"
             onFocus={() => window.scrollTo(0, document.body.scrollHeight)}
             px="10"
             type="text"

@@ -103,8 +103,8 @@ function AuthForm() {
             </FormControl>
           )}
           <Button
-            aria-label="submit"
             type="submit"
+            name="submit"
             width="full"
             mb={6}
             colorScheme="teal"
