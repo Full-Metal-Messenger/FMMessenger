@@ -12,14 +12,7 @@ function useRooms() {
     history,
   } = useContext(MessageContext);
 
-  const handleCreate = async () => {
-    const data = await createRoom(roomName);
-    console.log(data.name);
-    // history.push(`/${data.name}`);
-    return data;
-  };
-
-  return { handleCreate, roomName, setRoomName };
+  return { roomName, setRoomName };
 }
 
 export default useRooms;
