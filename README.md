@@ -25,7 +25,7 @@ You can create your own chat rooms and invite your friends to your room.
 If you no longer think the chat name works for the group as the owner, you can edit the name.
 
 Deployed Site:
-[Check out our Netlify here] fm-messenger.netlify.app
+[Check out our Netlify here] (https://fm-messenger.netlify.app/auth)
 
 Our Plan:
 [Check out our Miro Board here.] https://miro.com/app/board/uXjVOC-e9uc=/?share_link_id=786458000461
