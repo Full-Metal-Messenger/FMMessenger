@@ -3,8 +3,7 @@ import React from 'react';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function MessageInput() {
-  const { post, setPost } = useMessage();
-  const { handleSubmit } = useMessage();
+  const { post, setPost, handleSubmit } = useMessage();
   return (
     <Box>
       <form onSubmit={handleSubmit}>

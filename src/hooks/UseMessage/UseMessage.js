@@ -30,7 +30,6 @@ function useMessage() {
       status: 'success',
     });
     setToastMessage('');
-    console.log('error?');
   };
 
   const getData = async (id) => {
