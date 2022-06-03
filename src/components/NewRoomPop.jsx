@@ -13,30 +13,11 @@ import {
   PopoverHeader,
   useDisclosure,
 } from '@chakra-ui/react';
-import useRooms from '../hooks/useRooms';
-import { useHistory } from 'react-router-dom';
-import { createRoom } from '../services/rooms';
-import useToastAlert from '../hooks/useToast/useToastAlert';
+import useNewRoomPop from '../hooks/UseNewRoomPop/useNewRoomPop';
 
 function NewRoomPop() {
-  const history = useHistory();
-  const { isOpen, onToggle, onClose } = useDisclosure();
-  const { setRoomName, roomName } = useRooms();
-  const { setToastMessage } = useToastAlert();
-
-  const handleCreate = async () => {
-    const data = await createRoom(roomName);
-    setRoomName('');
-    onClose();
-    setToastMessage({
-      position: 'top',
-      description: `${roomName} Created Successfully`,
-      status: 'success',
-    });
-    setToastMessage('');
-    history.push(`/${data.id}`);
-    return data;
-  };
+  const { setRoomName, roomName, handleCreate, isOpen, onToggle, onClose } =
+    useNewRoomPop();
   return (
     <Box>
       <Button size="sm" mt="5" onClick={onToggle}>

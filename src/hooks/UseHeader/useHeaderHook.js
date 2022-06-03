@@ -3,13 +3,16 @@ import { client } from '../../services/client';
 import { getProfileById, updateUserName } from '../../services/messages';
 import useToastAlert from '../useToast/useToastAlert';
 import { logout } from '../../services/auth';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContext';
+import { useDisclosure } from '@chakra-ui/react';
 
 export default function useHeaderHook() {
   const { id } = useParams();
   const [light, setLight] = useState(true);
   const [usersProfile, setUsersProfile] = useState('');
   const [room, setRoom] = useState({});
+  const { onClose, isOpen, onToggle } = useDisclosure();
 
   const history = useHistory();
   const { user, setCurrentUser, setEmail, setPassword, setusername } =
@@ -53,6 +56,9 @@ export default function useHeaderHook() {
     setToastMessage('');
   };
   return {
+    onClose,
+    isOpen,
+    onToggle,
     light,
     setLight,
     room,

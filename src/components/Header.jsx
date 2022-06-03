@@ -24,7 +24,7 @@ import LandingButton from './LandingButton';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import styled from 'styled-components';
 import { animated } from '../views/Landing';
-import useAuthForm from '../hooks/UseAuthForm/useAuthForm';
+import useHeaderHook from '../hooks/UseHeader/useHeaderHook';
 
 const StyledText = styled(Text)`
   animation-name: ${animated};
@@ -35,18 +35,19 @@ const StyledText = styled(Text)`
 `;
 export default function Header() {
   const { toggleColorMode } = useColorMode();
-  const { isOpen, onToggle, onClose } = useDisclosure();
   const { user } = useAuthContext();
   const {
+    isOpen,
+    onToggle,
+    onClose,
     light,
     setLight,
     room,
-    setRoom,
     usersProfile,
     setUsersProfile,
     handleSubmit,
     handleProfileEdit,
-  } = useAuthForm();
+  } = useHeaderHook();
 
   return (
     <Box
