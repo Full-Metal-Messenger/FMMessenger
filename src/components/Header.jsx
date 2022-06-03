@@ -12,7 +12,6 @@ import {
   PopoverContent,
   PopoverFooter,
   PopoverHeader,
-  useDisclosure,
 } from '@chakra-ui/react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import React from 'react';
