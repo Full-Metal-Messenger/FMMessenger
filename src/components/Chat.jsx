@@ -51,19 +51,12 @@ function Chat() {
             >
               {`${new Date(created_at).toLocaleString()}`}
               {user.id === profile_id && (
-                <>
-                  <Button
-                    onClick={() => handleDelete(id)}
-                    size="xs"
-                    variant="ghost"
-                    rightIcon={<FaTrash />}
-                  />
-                  <Button
-                    size="xs"
-                    variant="ghost"
-                    rightIcon={<AiTwotoneEdit />}
-                  />
-                </>
+                <Button
+                  onClick={() => handleDelete(id)}
+                  size="xs"
+                  variant="ghost"
+                  rightIcon={<FaTrash />}
+                />
               )}
             </Text>
           </Box>

@@ -25,7 +25,7 @@ export default function Profiles() {
   const { handleToggle } = useContext(MessageContext);
   return (
     <Box>
-      <Button size="sm" my="5" colorScheme="blue" onClick={onOpen}>
+      <Button size="sm" mt="5" colorScheme="blue" onClick={onOpen}>
         Friends
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>

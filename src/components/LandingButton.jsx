@@ -6,7 +6,7 @@ function LandingButton() {
   return (
     <Box>
       <Link to="/">
-        <Button my="5" size="sm">
+        <Button mt="5" size="sm">
           Home
         </Button>
       </Link>
