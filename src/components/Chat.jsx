@@ -1,20 +1,5 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Text,
-  Tooltip,
-} from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-import { FaMoon } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import useMessage from '../hooks/UseMessage/UseMessage';
 

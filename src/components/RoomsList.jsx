@@ -62,16 +62,29 @@ function RoomsList() {
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Chat Rooms</DrawerHeader>
+        <DrawerContent bg="#1a202c">
+          <DrawerHeader color="gray.200" borderBottomWidth="1px">
+            Chat Rooms
+          </DrawerHeader>
           <DrawerBody>
             {loading ? (
               <p>loading</p>
             ) : (
               room?.map(({ id, name }) => (
-                <Text onClick={handleClick} key={id}>
-                  <Link to={`/${id}`}>{name}</Link>
-                </Text>
+                <Box
+                  m="2"
+                  p="2"
+                  border="2px"
+                  borderRadius="10px"
+                  borderColor="gray.700"
+                  bgGradient="linear(to-r,
+                    #fc00ff
+                    , #00dbde )"
+                >
+                  <Text color="white" onClick={handleClick} key={id}>
+                    <Link to={`/${id}`}>{name}</Link>
+                  </Text>
+                </Box>
               ))
             )}
           </DrawerBody>
