@@ -16,21 +16,15 @@ import {
 } from '@chakra-ui/react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import { logout } from '../services/auth';
 import NewRoomPop from './NewRoomPop';
 import Profiles from './Profiles';
-import { useState } from 'react';
 import RoomsList from './RoomsList';
 import LandingButton from './LandingButton';
-import { useEffect } from 'react';
-import { getProfileById, updateUserName } from '../services/messages';
 import { AiTwotoneEdit } from 'react-icons/ai';
-import useToastAlert from '../hooks/useToast/useToastAlert';
 import styled from 'styled-components';
 import { animated } from '../views/Landing';
-import { client } from '../services/client';
+import useAuthForm from '../hooks/UseAuthForm/useAuthForm';
 
 const StyledText = styled(Text)`
   animation-name: ${animated};
@@ -41,53 +35,18 @@ const StyledText = styled(Text)`
 `;
 export default function Header() {
   const { toggleColorMode } = useColorMode();
-  const { id } = useParams();
-  const [light, setLight] = useState(true);
-  const [usersProfile, setUsersProfile] = useState('');
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const [room, setRoom] = useState({});
-
-  const history = useHistory();
-  const { user, setCurrentUser, setEmail, setPassword, setusername } =
-    useAuthContext();
-  const { setToastMessage } = useToastAlert();
-  const handleSubmit = () => {
-    logout();
-    history.push('/auth');
-    setCurrentUser('');
-    setEmail('');
-    setPassword('');
-    setusername('');
-  };
-
-  useEffect(() => {
-    if (id === null) {
-      return;
-    }
-    getProfileById(user.id).then(({ username }) => setUsersProfile(username));
-  }, []);
-  useEffect(() => {
-    const getData = async () => {
-      const { body } = await client
-        .from('rooms')
-        .select()
-        .match({ id })
-        .single();
-      setRoom(body);
-    };
-    getData();
-  }, [id]);
-
-  const handleProfileEdit = async () => {
-    await updateUserName(usersProfile);
-    onClose();
-    setToastMessage({
-      position: 'top',
-      description: `UserName Changed to ${usersProfile}`,
-      status: 'success',
-    });
-    setToastMessage('');
-  };
+  const { user } = useAuthContext();
+  const {
+    light,
+    setLight,
+    room,
+    setRoom,
+    usersProfile,
+    setUsersProfile,
+    handleSubmit,
+    handleProfileEdit,
+  } = useAuthForm();
 
   return (
     <Box

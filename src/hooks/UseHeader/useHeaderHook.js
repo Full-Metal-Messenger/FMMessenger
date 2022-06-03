@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { client } from '../../services/client';
+import { getProfileById, updateUserName } from '../../services/messages';
+import useToastAlert from '../useToast/useToastAlert';
+import { logout } from '../../services/auth';
+import { useHistory } from 'react-router-dom';
 
 export default function useHeaderHook() {
-  const { toggleColorMode } = useColorMode();
   const { id } = useParams();
   const [light, setLight] = useState(true);
   const [usersProfile, setUsersProfile] = useState('');
-  const { isOpen, onToggle, onClose } = useDisclosure();
   const [room, setRoom] = useState({});
 
   const history = useHistory();
@@ -49,5 +52,14 @@ export default function useHeaderHook() {
     });
     setToastMessage('');
   };
-  return <div>useHeaderHook</div>;
+  return {
+    light,
+    setLight,
+    room,
+    setRoom,
+    usersProfile,
+    setUsersProfile,
+    handleSubmit,
+    handleProfileEdit,
+  };
 }
