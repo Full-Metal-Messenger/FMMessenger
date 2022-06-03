@@ -132,7 +132,9 @@ export default function Header() {
           variant="ghost"
           rightIcon={<AiTwotoneEdit />}
         />
-        <StyledText as="kbd">You are in {!room ? 'FMM' : room.name}</StyledText>
+        <StyledText as="kbd">
+          You are in {!room ? 'FMM' : room?.name}
+        </StyledText>
         <Popover
           returnFocusOnClose={false}
           isOpen={isOpen}
