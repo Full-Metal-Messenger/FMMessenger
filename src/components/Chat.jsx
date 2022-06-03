@@ -1,26 +1,18 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Text,
-  Tooltip,
-} from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import React from 'react';
-import { FaMoon } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import useMessage from '../hooks/UseMessage/UseMessage';
+import { FaTrash } from 'react-icons/fa';
+import { AiTwotoneEdit } from 'react-icons/ai';
+import { deleteMessage } from '../services/messages';
 
 function Chat() {
   const { user } = useAuthContext();
-  const { messages, removeMessage } = useMessage();
+  const { messages } = useMessage();
+
+  const handleDelete = async (id) => {
+    deleteMessage(id);
+  };
 
   return (
     <Box
@@ -58,6 +50,21 @@ function Chat() {
               textAlign="left"
             >
               {`${new Date(created_at).toLocaleString()}`}
+              {user.id === profile_id && (
+                <>
+                  <Button
+                    onClick={() => handleDelete(id)}
+                    size="xs"
+                    variant="ghost"
+                    rightIcon={<FaTrash />}
+                  />
+                  <Button
+                    size="xs"
+                    variant="ghost"
+                    rightIcon={<AiTwotoneEdit />}
+                  />
+                </>
+              )}
             </Text>
           </Box>
         )

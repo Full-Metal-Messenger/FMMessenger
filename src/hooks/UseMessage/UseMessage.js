@@ -29,6 +29,7 @@ function useMessage() {
       description: 'Message Sent',
       status: 'success',
     });
+    setToastMessage('');
   };
 
   const getData = async (id) => {
@@ -44,6 +45,9 @@ function useMessage() {
     const sub = client
       .from(`messages:room_id=eq.${id}`)
       .on('INSERT', () => {
+        getData(id);
+      })
+      .on('DELETE', () => {
         getData(id);
       })
       .subscribe();
