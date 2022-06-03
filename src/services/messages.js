@@ -1,3 +1,4 @@
+import { getUser } from './auth';
 import { client, parseData } from './client';
 
 export async function getMessages(id) {
@@ -29,16 +30,19 @@ export async function deleteMessage(id) {
   return parseData(resp);
 }
 
-// export function subscribe(onPost = (_post) => {}) {
-//   const resp = client
-//     .from('messages')
-//     .on('INSERT', (message) => {
-//       onPost(message.new);
-//     })
-//     .subscribe();
-//   return resp;
-// }
+export async function updateUserName(username) {
+  const resp = await client
+    .from('profiles')
+    .update({ username })
+    .match({ id: getUser().id });
+  return parseData(resp);
+}
 
 export function unsubscribe() {
   return client.removeAllSubscriptions();
+}
+
+export async function getProfileById(id) {
+  const data = await client.from('profiles').select().match({ id }).single();
+  return parseData(data);
 }
