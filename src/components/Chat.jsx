@@ -9,7 +9,7 @@ function Chat() {
   const { user } = useAuthContext();
   const { messages, removeMessage } = useMessage();
 
-  const handleDelete = async () => {};
+  const handleDelete = async (id) => {};
 
   return (
     <Box
@@ -50,13 +50,12 @@ function Chat() {
               {user.id === profile_id && (
                 <>
                   <Button
-                    onClick={handleDelete}
+                    onClick={() => handleDelete(id)}
                     size="xs"
                     variant="ghost"
                     rightIcon={<FaTrash />}
                   />
                   <Button
-                    onClick={handleDelete}
                     size="xs"
                     variant="ghost"
                     rightIcon={<AiTwotoneEdit />}
