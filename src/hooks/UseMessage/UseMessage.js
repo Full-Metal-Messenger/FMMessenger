@@ -29,6 +29,8 @@ function useMessage() {
       description: 'Message Sent',
       status: 'success',
     });
+    setToastMessage('');
+    console.log('error?');
   };
 
   const getData = async (id) => {
