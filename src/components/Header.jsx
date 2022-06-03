@@ -31,33 +31,45 @@ export default function Header() {
       position="sticky"
       top="0"
       left="0"
-      h="100px"
+      h="auto"
+      maxW="100%"
       justifyContent="space-between"
       mb="20px"
       bg="#1a202c"
       boxShadow="lg"
       zIndex="1"
     >
-      <RoomsList />
-      <Profiles />
-      {user && (
-        <Box>
-          <Button m="5" onClick={handleSubmit}>
-            LogOut
-          </Button>
-        </Box>
-      )}
-      <Box>
+      <Box display="flex">
+        <RoomsList />
+        <NewRoomPop />
+        <Profiles />
+      </Box>
+      <Box
+        position={['fixed', 'fixed', 'relative', 'relative']}
+        right="0"
+        display={['', '', 'flex', 'flex']}
+      >
+        {user && (
+          <Box>
+            <Button size="sm" my="5" clear="all" onClick={handleSubmit}>
+              LogOut
+            </Button>
+          </Box>
+        )}
         <Button
-          m="5"
+          position={['fixed', 'fixed', 'relative', 'relative']}
+          top={['50', '50', '0', '0']}
+          right={['0', '0', '', '']}
+          bg={['#1a202c', '#1a202c', '#2c313d', '#2c313d']}
+          my="5"
+          size="sm"
           onClick={() => {
             setLight(!light), toggleColorMode();
           }}
         >
-          {!light ? <FaMoon /> : <FaSun />}
+          {!light ? <FaMoon color="white" /> : <FaSun />}
         </Button>
       </Box>
-      <NewRoomPop />
     </Flex>
   );
 }

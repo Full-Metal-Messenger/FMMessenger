@@ -16,6 +16,7 @@ function Main() {
         ref={ref}
         display="flex"
         minH="100vh"
+        maxW="100%"
         flexDirection="column"
         position="relative"
         justifyItems="center"
@@ -33,13 +34,14 @@ function Main() {
           alignItems="stretch"
           textAlign="center"
         >
-          <Box display="flex" flex="1" flexDirection="column" maxH="100%">
-            <Chat />
-          </Box>
+          <Box display="flex" flex="1" flexDirection="column" maxH="100%"></Box>
+          <Chat />
         </Box>
         <Box position="sticky" bottom="0" bg="#1a202c">
           <MessageInput />
-          <AddTooRoomPop />
+          <Box position="fixed" bottom="60%" left="10%">
+            <AddTooRoomPop />
+          </Box>
         </Box>
       </Box>
     </>
