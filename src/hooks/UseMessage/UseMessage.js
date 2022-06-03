@@ -46,6 +46,9 @@ function useMessage() {
       .on('INSERT', () => {
         getData(id);
       })
+      .on('DELETE', () => {
+        getData(id);
+      })
       .subscribe();
 
     return () => client.removeSubscription(sub);
