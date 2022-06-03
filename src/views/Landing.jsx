@@ -1,13 +1,4 @@
-import {
-  Box,
-  Grid,
-  GridItem,
-  Heading,
-  Image,
-  Link,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Heading, Link, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import AddTooRoomPop from '../components/AddTooRoomPop';
 import Header from '../components/Header';

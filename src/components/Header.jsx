@@ -43,6 +43,7 @@ export default function Header() {
         <RoomsList />
         <NewRoomPop />
         <Profiles />
+        <LandingButton />
       </Box>
       <Box
         position={['fixed', 'fixed', 'relative', 'relative']}
