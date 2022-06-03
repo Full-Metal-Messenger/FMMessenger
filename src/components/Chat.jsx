@@ -50,14 +50,12 @@ function Chat() {
               {user.id === profile_id && (
                 <>
                   <Button
-                    key={id}
                     onClick={handleDelete}
                     size="xs"
                     variant="ghost"
                     rightIcon={<FaTrash />}
                   />
                   <Button
-                    key={id}
                     onClick={handleDelete}
                     size="xs"
                     variant="ghost"
