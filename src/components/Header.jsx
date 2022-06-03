@@ -61,6 +61,9 @@ export default function Header() {
   };
 
   useEffect(() => {
+    if (id === null) {
+      return;
+    }
     getProfileById(user.id).then(({ username }) => setUsersProfile(username));
   }, []);
   useEffect(() => {
@@ -129,7 +132,7 @@ export default function Header() {
           variant="ghost"
           rightIcon={<AiTwotoneEdit />}
         />
-        <StyledText as="kbd">You are in {room.name}</StyledText>
+        <StyledText as="kbd">You are in {!room ? 'FMM' : room.name}</StyledText>
         <Popover
           returnFocusOnClose={false}
           isOpen={isOpen}
