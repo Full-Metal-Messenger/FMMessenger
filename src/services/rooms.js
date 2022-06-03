@@ -11,6 +11,11 @@ export async function getRoomId() {
 
   return parseData(body);
 }
+export async function getRoomById(id) {
+  const body = await client.from('rooms').select().match({ id }).single();
+  console.log(body);
+  parseData(body);
+}
 
 export async function addToRoom(room_id, profile_id) {
   const resp = await client
