@@ -24,13 +24,14 @@ function AddTooRoomPop() {
   const handleClick = async () => {
     await addToRoom(roomId, id);
     setPopOpen({ open: false, id: null });
+    setRoomId('');
   };
   return (
     <>
       <Popover
         returnFocusOnClose={false}
         isOpen={open}
-        placement="top-left"
+        placement="bottom"
         closeOnBlur={false}
       >
         <PopoverContent>
