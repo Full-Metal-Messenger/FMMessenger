@@ -20,9 +20,11 @@ import useToastAlert from '../hooks/useToast/useToastAlert';
 
 function AddTooRoomPop() {
   const [roomId, setRoomId] = useState('');
-  const { popOpen, setPopOpen, globalRoom } = useContext(MessageContext);
   const { setToastMessage } = useToastAlert();
+
+  const { popOpen, setPopOpen, globalRoom } = useContext(MessageContext);
   const { open, id, name } = popOpen;
+
   const handleClick = async () => {
     await addToRoom(roomId, id);
     setPopOpen({ open: false, id: null });
