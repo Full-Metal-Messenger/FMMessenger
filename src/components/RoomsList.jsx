@@ -1,66 +1,27 @@
 import { Text } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { MessageContext } from '../context/MessageContext';
-import { client } from '../services/client';
-import { unsubscribe } from '../services/messages';
-import { getRoomId } from '../services/rooms';
+
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
-  useDisclosure,
   Button,
   Box,
 } from '@chakra-ui/react';
+import useRoomList from '../hooks/UseRoomList/useRoomList';
 
 function RoomsList() {
-  const { isOpen, onClose, onOpen } = useDisclosure();
-  const { setGlobalRoom } = useContext(MessageContext);
-  const [placement, setPlacement] = useState('left');
-  const { loading, setLoading } = useContext(MessageContext);
-  const [room, setRoom] = useState([]);
-
-  const handleClick = () => {
-    onClose();
-  };
-
-  const getData = async () => {
-    const { body } = await client.from('rooms').select();
-    setRoom(body);
-    setGlobalRoom(body);
-  };
-  useEffect(() => {
-    const fetchData = async () => {
-      const { body } = await client.from('rooms').select();
-      setRoom(body);
-      setGlobalRoom(body);
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const sub = client
-      .from('rooms')
-      .on('INSERT', () => {
-        getData();
-      })
-      .subscribe();
-
-    return () => client.removeSubscription(sub);
-  }, []);
+  const { loading, isOpen, onClose, onOpen, room, handleClick } = useRoomList();
 
   return (
     <Box>
       <Button size="sm" my="5" colorScheme="blue" onClick={onOpen}>
         Chat Rooms
       </Button>
-      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg="#1a202c">
           <DrawerHeader color="gray.200" borderBottomWidth="1px">

@@ -1,16 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { MessageContext } from '../context/MessageContext';
-import { createRoom, getRoomId } from '../services/rooms';
 
 function useRooms() {
-  const {
-    roomName,
-    setRoomName,
-    setFetchedRoom,
-    setLoading,
-    fetchedRoom,
-    history,
-  } = useContext(MessageContext);
+  const { roomName, setRoomName } = useContext(MessageContext);
 
   return { roomName, setRoomName };
 }

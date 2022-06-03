@@ -9,4 +9,3 @@ export const parseData = ({ data, error }) => {
 
   return data;
 };
-//adding dev
