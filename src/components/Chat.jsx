@@ -1,11 +1,15 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import useMessage from '../hooks/UseMessage/UseMessage';
+import { FaTrash } from 'react-icons/fa';
+import { AiTwotoneEdit } from 'react-icons/ai';
 
 function Chat() {
   const { user } = useAuthContext();
   const { messages, removeMessage } = useMessage();
+
+  const handleDelete = async () => {};
 
   return (
     <Box
@@ -43,6 +47,24 @@ function Chat() {
               textAlign="left"
             >
               {`${new Date(created_at).toLocaleString()}`}
+              {user.id === profile_id && (
+                <>
+                  <Button
+                    key={id}
+                    onClick={handleDelete}
+                    size="xs"
+                    variant="ghost"
+                    rightIcon={<FaTrash />}
+                  />
+                  <Button
+                    key={id}
+                    onClick={handleDelete}
+                    size="xs"
+                    variant="ghost"
+                    rightIcon={<AiTwotoneEdit />}
+                  />
+                </>
+              )}
             </Text>
           </Box>
         )

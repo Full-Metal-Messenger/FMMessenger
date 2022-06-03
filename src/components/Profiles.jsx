@@ -38,6 +38,7 @@ export default function Profiles() {
           <DrawerBody>
             {person.map(({ id, username }) => (
               <Box
+                key={id}
                 m="2"
                 p="2"
                 border="2px"
@@ -53,7 +54,6 @@ export default function Profiles() {
                   as="p"
                   textDecoration="underline"
                   onClick={() => handleToggle(id, username, onClose)}
-                  key={id}
                 >
                   {username}
                 </Text>

@@ -72,6 +72,7 @@ function RoomsList() {
             ) : (
               room?.map(({ id, name }) => (
                 <Box
+                  key={id}
                   m="2"
                   p="2"
                   border="2px"
@@ -81,7 +82,7 @@ function RoomsList() {
                     #fc00ff
                     , #00dbde )"
                 >
-                  <Text color="white" onClick={handleClick} key={id}>
+                  <Text color="white" onClick={handleClick}>
                     <Link to={`/${id}`}>{name}</Link>
                   </Text>
                 </Box>
