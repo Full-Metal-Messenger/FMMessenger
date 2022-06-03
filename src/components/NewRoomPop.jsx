@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Button,
   ButtonGroup,
   Input,
@@ -36,7 +37,7 @@ function NewRoomPop() {
     return data;
   };
   return (
-    <>
+    <Box>
       <Button m="5" onClick={onToggle}>
         Create New Room
       </Button>
@@ -70,7 +71,7 @@ function NewRoomPop() {
           </PopoverFooter>
         </PopoverContent>
       </Popover>
-    </>
+    </Box>
   );
 }
 

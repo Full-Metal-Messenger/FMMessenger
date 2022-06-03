@@ -1,4 +1,4 @@
-import { Button, Flex, useColorMode } from '@chakra-ui/react';
+import { Box, Button, Flex, useColorMode } from '@chakra-ui/react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -36,22 +36,27 @@ export default function Header() {
       mb="20px"
       bg="#1a202c"
       boxShadow="lg"
+      zIndex="1"
     >
       <RoomsList />
       <Profiles />
       {user && (
-        <Button m="5" onClick={handleSubmit}>
-          LogOut
-        </Button>
+        <Box>
+          <Button m="5" onClick={handleSubmit}>
+            LogOut
+          </Button>
+        </Box>
       )}
-      <Button
-        m="5"
-        onClick={() => {
-          setLight(!light), toggleColorMode();
-        }}
-      >
-        {!light ? <FaMoon /> : <FaSun />}
-      </Button>
+      <Box>
+        <Button
+          m="5"
+          onClick={() => {
+            setLight(!light), toggleColorMode();
+          }}
+        >
+          {!light ? <FaMoon /> : <FaSun />}
+        </Button>
+      </Box>
       <NewRoomPop />
     </Flex>
   );
