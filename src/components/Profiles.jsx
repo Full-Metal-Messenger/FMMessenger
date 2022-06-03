@@ -4,23 +4,19 @@ import useProfiles from '../hooks/useProfiles/useProfiles';
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
   Button,
   Box,
   Text,
 } from '@chakra-ui/react';
 
-import { useState } from 'react';
 import { MessageContext } from '../context/MessageContext';
 
 export default function Profiles() {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const [placement, setPlacement] = useState('right');
   const { person } = useProfiles();
   const { handleToggle } = useContext(MessageContext);
   return (
@@ -28,7 +24,7 @@ export default function Profiles() {
       <Button size="sm" mt="5" colorScheme="blue" onClick={onOpen}>
         Friends
       </Button>
-      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg="#1a202c">
           <DrawerHeader color="gray.200" borderBottomWidth="1px">

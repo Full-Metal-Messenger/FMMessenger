@@ -3,16 +3,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageContext } from '../context/MessageContext';
 import { client } from '../services/client';
-import { unsubscribe } from '../services/messages';
-import { getRoomId } from '../services/rooms';
+
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
   Button,
   Box,

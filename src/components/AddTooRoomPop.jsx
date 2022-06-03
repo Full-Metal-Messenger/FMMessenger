@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Button,
   ButtonGroup,
-  Flex,
   FormControl,
-  Input,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -15,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import { MessageContext } from '../context/MessageContext';
 import { addToRoom } from '../services/rooms';
-import { useState } from 'react';
 import useToastAlert from '../hooks/useToast/useToastAlert';
 
 function AddTooRoomPop() {
