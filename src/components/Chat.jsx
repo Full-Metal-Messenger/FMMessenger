@@ -29,9 +29,6 @@ function Chat() {
       flexDirection="column"
       justifyContent="end"
       p="4"
-      maxW="99%"
-      mx="auto"
-      minW="40%"
     >
       {messages.map(
         ({ id, created_at, posts, profile_id, profiles: { username } }) => (
@@ -43,7 +40,7 @@ function Chat() {
             m="2"
             alignSelf={user.id !== profile_id ? 'flex-start' : 'flex-end'}
             bg={user.id === profile_id ? 'blue.300' : 'gray.500'}
-            ndex={1}
+            zIndex="0"
           >
             <Text>{posts}</Text>
 

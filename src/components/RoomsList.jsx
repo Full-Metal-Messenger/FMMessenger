@@ -57,7 +57,7 @@ function RoomsList() {
 
   return (
     <Box>
-      <Button m="5" colorScheme="blue" onClick={onOpen}>
+      <Button size="sm" my="5" colorScheme="blue" onClick={onOpen}>
         Chat Rooms
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
