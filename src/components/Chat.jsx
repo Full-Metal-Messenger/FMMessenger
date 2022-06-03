@@ -4,12 +4,15 @@ import { useAuthContext } from '../context/AuthContext';
 import useMessage from '../hooks/UseMessage/UseMessage';
 import { FaTrash } from 'react-icons/fa';
 import { AiTwotoneEdit } from 'react-icons/ai';
+import { deleteMessage } from '../services/messages';
 
 function Chat() {
   const { user } = useAuthContext();
-  const { messages, removeMessage } = useMessage();
+  const { messages } = useMessage();
 
-  const handleDelete = async () => {};
+  const handleDelete = async (id) => {
+    deleteMessage(id);
+  };
 
   return (
     <Box
@@ -50,7 +53,7 @@ function Chat() {
               {user.id === profile_id && (
                 <>
                   <Button
-                    onClick={handleDelete}
+                    onClick={() => handleDelete(id)}
                     size="xs"
                     variant="ghost"
                     rightIcon={<FaTrash />}
