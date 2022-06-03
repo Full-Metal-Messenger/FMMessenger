@@ -48,6 +48,7 @@ function AuthForm() {
           description: `Welcome Back.`,
           status: 'info',
         });
+        setToastMessage('');
         history.push('/');
       } else {
         const data = await signUpUser({ email, password }, username);
@@ -57,7 +58,7 @@ function AuthForm() {
           description: `Congratulations ${username}! Your FMM account has been registered.`,
           status: 'success',
         });
-
+        setToastMessage('');
         history.push('/');
       }
     } catch (e) {

@@ -33,6 +33,7 @@ function NewRoomPop() {
       description: `${roomName} Created Successfully`,
       status: 'success',
     });
+    setToastMessage('');
     history.push(`/${data.id}`);
     return data;
   };
