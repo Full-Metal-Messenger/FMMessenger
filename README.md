@@ -16,7 +16,7 @@ How it works
 
 Sign Up or Sign In
 
-Pick a chat room and begin sending chatting.
+Pick a chat room and begin chatting.
 
 If you accidently post a message before it is complete you can delete it and repost if you like.
 
