@@ -67,7 +67,7 @@ function AuthForm() {
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
-      <Flex direction="column" background="gray.700" p={12} rounded={6}>
+      <Flex direction="column" background="gray.200" p={12} rounded={6}>
         <form onSubmit={handleSubmit}>
           <Heading>{type ? 'Log in' : 'Sign Up'}</Heading>
           <FormControl isRequired>

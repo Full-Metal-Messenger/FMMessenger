@@ -27,7 +27,6 @@ export default function Header() {
 
   return (
     <Flex
-      flex="1"
       position="sticky"
       top="0"
       left="0"
@@ -67,7 +66,7 @@ export default function Header() {
             setLight(!light), toggleColorMode();
           }}
         >
-          {!light ? <FaMoon color="white" /> : <FaSun />}
+          {!light ? <FaMoon color="white" /> : <FaSun color="white" />}
         </Button>
       </Box>
     </Flex>

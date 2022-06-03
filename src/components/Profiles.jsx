@@ -30,19 +30,34 @@ export default function Profiles() {
       </Button>
       <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Friends</DrawerHeader>
+        <DrawerContent bg="#1a202c">
+          <DrawerHeader color="gray.200" borderBottomWidth="1px">
+            Friends
+            <Text fontSize="sm">Click to add to your private room</Text>
+          </DrawerHeader>
           <DrawerBody>
             {person.map(({ id, username }) => (
-              <Text
-                cursor="pointer"
-                as="p"
-                textDecoration="underline"
-                onClick={() => handleToggle(id, username, onClose)}
+              <Box
                 key={id}
+                m="2"
+                p="2"
+                border="2px"
+                borderRadius="10px"
+                borderColor="gray.700"
+                bgGradient="linear(to-r,
+                  #8E2DE2
+                ,#4A00E0 )"
               >
-                {username}
-              </Text>
+                <Text
+                  color="gray.200"
+                  cursor="pointer"
+                  as="p"
+                  textDecoration="underline"
+                  onClick={() => handleToggle(id, username, onClose)}
+                >
+                  {username}
+                </Text>
+              </Box>
             ))}
           </DrawerBody>
         </DrawerContent>
