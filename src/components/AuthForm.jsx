@@ -8,19 +8,17 @@ import {
   Input,
   Link,
   LinkBox,
-  useColorMode,
-  useColorModeValue,
+  Alert,
+  AlertIcon,
+  useToast,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import useToastAlert from '../hooks/useToast/useToastAlert';
 import { signInUser, signUpUser } from '../services/auth';
 
 function AuthForm() {
-  const { toggleColorMode } = useColorMode();
-  const formBackGround = useColorModeValue('gray.100', 'gray.700');
-
   const history = useHistory();
   const {
     email,
@@ -36,28 +34,40 @@ function AuthForm() {
     setCurrentUser,
   } = useAuthContext();
 
+  const { setToastMessage } = useToastAlert();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (type) {
         const data = await signInUser(email, password);
-        console.log(data);
         setCurrentUser(data);
+
+        setToastMessage({
+          position: 'top',
+          description: `Welcome Back.`,
+          status: 'info',
+        });
         history.push('/');
       } else {
         const data = await signUpUser({ email, password }, username);
         setCurrentUser(data);
+        setToastMessage({
+          position: 'top',
+          description: `Congratulations ${username}! Your FMM account has been registered.`,
+          status: 'success',
+        });
+
         history.push('/');
       }
-    } catch (error) {
+    } catch (e) {
       setError(e.message);
     }
   };
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
-      <Flex direction="column" background={formBackGround} p={12} rounded={6}>
-        <Button onClick={toggleColorMode}>Toggle Dark Theme</Button>
+      <Flex direction="column" background="gray.700" p={12} rounded={6}>
         <form onSubmit={handleSubmit}>
           <Heading>{type ? 'Log in' : 'Sign Up'}</Heading>
           <FormControl isRequired>
@@ -100,19 +110,46 @@ function AuthForm() {
           <Button type="submit" width="full" mb={6} colorScheme="teal">
             {type ? 'Log In' : 'Sign Up'}
           </Button>
-
+          {error && (
+            <Text>
+              {error === 'Database error saving new user' ? (
+                <Alert status="error">
+                  <AlertIcon />
+                  'Username already registered'
+                </Alert>
+              ) : (
+                <Alert status="error">
+                  <AlertIcon />
+                  {error}
+                </Alert>
+              )}
+            </Text>
+          )}
           {!type ? (
             <LinkBox>
               Already Have an account?
               <Text fontWeight="bold">
-                <Link onClick={() => setType(true)}> Sign In</Link>
+                <Link
+                  onClick={() => {
+                    setType(true), setError('');
+                  }}
+                >
+                  {' '}
+                  Sign In
+                </Link>
               </Text>
             </LinkBox>
           ) : (
             <LinkBox>
               Dont have an account?
               <Text fontWeight="bold">
-                <Link onClick={() => setType(false)}>Sign Up</Link>
+                <Link
+                  onClick={() => {
+                    setType(false), setError('');
+                  }}
+                >
+                  Sign Up
+                </Link>
               </Text>
             </LinkBox>
           )}

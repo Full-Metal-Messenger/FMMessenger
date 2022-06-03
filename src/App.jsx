@@ -3,17 +3,20 @@ import Auth from './views/Auth';
 import { Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
 import Header from './components/Header';
+import Landing from './views/Landing';
 
 export default function App() {
   return (
     <>
-      <Header />
       <Switch>
         <Route path="/auth">
           <Auth />
         </Route>
-        <PrivateRoute path="/">
+        <PrivateRoute path="/:id">
           <Main />
+        </PrivateRoute>
+        <PrivateRoute path="/">
+          <Landing />
         </PrivateRoute>
       </Switch>
     </>

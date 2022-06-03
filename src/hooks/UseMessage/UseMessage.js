@@ -1,36 +1,61 @@
-import { useContext, useEffect } from 'react';
-import { useAuthContext } from '../../context/AuthContext';
+import { useContext, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import { MessageContext } from '../../context/MessageContext';
+import { client } from '../../services/client';
 import {
+  deleteMessage,
   getMessages,
   postMessage,
-  subscribe,
-  unsubscribe,
 } from '../../services/messages';
+import useToastAlert from '../useToast/useToastAlert';
 
 function useMessage() {
   const { post, setPost, messages, setMessages } = useContext(MessageContext);
-  const { user } = useAuthContext();
-  console.log(user);
+  const { id } = useParams();
+  const { setToastMessage } = useToastAlert();
+
+  const ref = useRef(null);
+
+  const removeMessage = async () => {
+    await deleteMessage();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await postMessage(post);
+    await postMessage(post, id);
     setPost('');
+    setToastMessage({
+      position: 'top',
+      description: 'Message Sent',
+      status: 'success',
+    });
   };
-  const handleMessageReceived = (message) => {
-    setMessages((prevMessages) => [...prevMessages, message]);
+
+  const getData = async (id) => {
+    const data = await getMessages(id);
+    setMessages(data);
+
+    if (ref.current) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
   };
 
   useEffect(() => {
-    getMessages().then(setMessages);
+    const sub = client
+      .from(`messages:room_id=eq.${id}`)
+      .on('INSERT', () => {
+        getData(id);
+      })
+      .subscribe();
 
-    subscribe(handleMessageReceived);
+    return () => client.removeSubscription(sub);
+  }, [id]);
 
-    return () => unsubscribe();
-  }, []);
+  useEffect(() => {
+    getData(id);
+  }, [id]);
 
-  return { handleSubmit, messages, setPost, handleMessageReceived, post };
+  return { handleSubmit, messages, setPost, post, ref, removeMessage };
 }
 
 export default useMessage;
