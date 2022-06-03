@@ -22,7 +22,7 @@ If you accidently post a message before it is complete you can delete it and rep
 
 You can create your own chat rooms and invite your friends to your room.
 
-If you no longer think the chat name works for the group as the owner, you can edit the name.
+If you no longer like your user name, you can edit and make a new one.
 
 Deployed Site:
 [Check out our Netlify here] (https://fm-messenger.netlify.app/auth)
