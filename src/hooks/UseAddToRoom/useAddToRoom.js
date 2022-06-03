@@ -20,5 +20,5 @@ export default function useAddToRoom() {
     });
     setToastMessage('');
   };
-  return { handleClick, name, globalRoom, setRoomId, roomId, open, id };
+  return { setPopOpen, handleClick, name, globalRoom, setRoomId, open };
 }

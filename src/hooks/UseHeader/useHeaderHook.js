@@ -56,13 +56,12 @@ export default function useHeaderHook() {
     setToastMessage('');
   };
   return {
-    onClose,
     isOpen,
     onToggle,
+    onClose,
     light,
     setLight,
     room,
-    setRoom,
     usersProfile,
     setUsersProfile,
     handleSubmit,
