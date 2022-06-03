@@ -29,6 +29,8 @@ import { useEffect } from 'react';
 import { getProfileById, updateUserName } from '../services/messages';
 import { AiTwotoneEdit } from 'react-icons/ai';
 import useToastAlert from '../hooks/useToast/useToastAlert';
+import styled from 'styled-components';
+import { animated } from '../views/Landing';
 
 export default function Header() {
   const { toggleColorMode } = useColorMode();
@@ -36,6 +38,13 @@ export default function Header() {
   const [usersProfile, setUsersProfile] = useState('');
   const { isOpen, onToggle, onClose } = useDisclosure();
 
+  const StyledText = styled(Text)`
+    animation-name: ${animated};
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    font-size: 24px;
+    font-style: ;
+  `;
   const history = useHistory();
   const { user, setCurrentUser, setEmail, setPassword, setusername } =
     useAuthContext();
@@ -83,7 +92,7 @@ export default function Header() {
         <LandingButton />
       </Box>
       <Box>
-        <Text>{usersProfile}</Text>
+        <StyledText as="kbd">Welcome {usersProfile}</StyledText>
 
         <Button
           onClick={onToggle}

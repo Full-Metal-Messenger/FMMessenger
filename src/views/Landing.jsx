@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import image from '../assets/alchemy.png';
 import styled, { keyframes } from 'styled-components';
 
-const animated = keyframes`
+export const animated = keyframes`
      
       0% {
         color: red;
