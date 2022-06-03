@@ -14,7 +14,8 @@ import {
 import useAddToRoom from '../hooks/UseAddToRoom/useAddToRoom';
 
 function AddTooRoomPop() {
-  const { handleClick, name, globalRoom, setRoomId, open } = useAddToRoom();
+  const { setPopOpen, handleClick, name, globalRoom, setRoomId, open } =
+    useAddToRoom();
   return (
     <>
       <Popover
