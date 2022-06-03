@@ -44,9 +44,7 @@ export default function Profiles() {
                 border="2px"
                 borderRadius="10px"
                 borderColor="gray.700"
-                bgGradient="linear(to-r,
-                  #8E2DE2
-                ,#4A00E0 )"
+                bgGradient="linear(to-r,#8E2DE2,#4A00E0 )"
               >
                 <Text
                   color="gray.200"

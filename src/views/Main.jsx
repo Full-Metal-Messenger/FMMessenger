@@ -7,12 +7,19 @@ import MessageInput from '../components/MessageInput';
 import NewRoomPop from '../components/NewRoomPop';
 import RoomsList from '../components/RoomsList';
 import useMessage from '../hooks/UseMessage/UseMessage';
+import image from '../assets/alchemy.png';
 
 function Main() {
   const { ref } = useMessage();
   return (
     <>
       <Box
+        bgImage={image}
+        bgSize="cover"
+        bgAttachment="fixed"
+        bgPos="50% 100%"
+        pos="relative"
+        bgRepeat="no-repeat"
         ref={ref}
         display="flex"
         minH="100vh"
