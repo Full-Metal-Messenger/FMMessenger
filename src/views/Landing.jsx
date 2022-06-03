@@ -4,6 +4,7 @@ import {
   GridItem,
   Heading,
   Image,
+  Link,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -11,8 +12,26 @@ import React from 'react';
 import AddTooRoomPop from '../components/AddTooRoomPop';
 import Header from '../components/Header';
 import image from '../assets/alchemy.png';
-import styled from '@emotion/styled';
+import styled, { keyframes } from 'styled-components';
 
+const animated = keyframes`
+     
+      0% {
+        color: red;
+      }
+      50% {
+        color: blue;
+      }
+      100% {
+        color: red;
+      }
+      `;
+
+const StyledLink = styled(Link)`
+  animation-name: ${animated};
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+`;
 function Landing() {
   const bottomTextColor = useColorModeValue('cyan.700', 'gray.300');
   const color = useColorModeValue('black', 'transparent');
@@ -36,33 +55,33 @@ function Landing() {
       <Box mt="300px">
         <Text bg={color} as="kbd" fontSize="4xl" color={bottomTextColor}>
           FMM was lovingly concocted by{' '}
-          <a
+          <StyledLink
             href="https://www.linkedin.com/in/bradley-bird/
 "
+            isExternal
           >
             Bradley Bird
-          </a>
-          ,
-          <a href="https://www.linkedin.com/in/brendenseifried/">
+          </StyledLink>
+          , {''}
+          <StyledLink
+            href="https://www.linkedin.com/in/brendenseifried/"
+            isExternal
+          >
             Brenden Seifried
-          </a>
+          </StyledLink>
           , and{' '}
-          <a href="https://www.linkedin.com/in/andy-Mascaro">Andy Mascaro</a>.
+          <StyledLink
+            href="https://www.linkedin.com/in/andy-Mascaro"
+            isExternal
+          >
+            Andy Mascaro
+          </StyledLink>
+          .
         </Text>
       </Box>
-      <Gradient />
 
       <AddTooRoomPop />
     </Box>
   );
 }
-
-export const Gradient = styled.div`
-  z-index: 3;
-  position: fixed;
-  top: 116px;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-`;
 export default Landing;
