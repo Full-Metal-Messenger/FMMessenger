@@ -39,7 +39,7 @@ function NewRoomPop() {
   };
   return (
     <Box>
-      <Button size="sm" my="5" onClick={onToggle}>
+      <Button size="sm" mt="5" onClick={onToggle}>
         Create New Room
       </Button>
       <Popover

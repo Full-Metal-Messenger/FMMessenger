@@ -1,6 +1,5 @@
 import {
   Box,
-  Flex,
   Text,
   useColorMode,
   Button,
@@ -17,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { logout } from '../services/auth';
 import NewRoomPop from './NewRoomPop';
@@ -31,20 +30,23 @@ import { AiTwotoneEdit } from 'react-icons/ai';
 import useToastAlert from '../hooks/useToast/useToastAlert';
 import styled from 'styled-components';
 import { animated } from '../views/Landing';
+import { client } from '../services/client';
 
+const StyledText = styled(Text)`
+  animation-name: ${animated};
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  font-size: 22px;
+  margin-bottom: 10px;
+`;
 export default function Header() {
   const { toggleColorMode } = useColorMode();
+  const { id } = useParams();
   const [light, setLight] = useState(true);
   const [usersProfile, setUsersProfile] = useState('');
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const [room, setRoom] = useState({});
 
-  const StyledText = styled(Text)`
-    animation-name: ${animated};
-    animation-duration: 8s;
-    animation-iteration-count: infinite;
-    font-size: 24px;
-    font-style: ;
-  `;
   const history = useHistory();
   const { user, setCurrentUser, setEmail, setPassword, setusername } =
     useAuthContext();
@@ -61,6 +63,17 @@ export default function Header() {
   useEffect(() => {
     getProfileById(user.id).then(({ username }) => setUsersProfile(username));
   }, []);
+  useEffect(() => {
+    const getData = async () => {
+      const { body } = await client
+        .from('rooms')
+        .select()
+        .match({ id })
+        .single();
+      setRoom(body);
+    };
+    getData();
+  }, [id]);
 
   const handleProfileEdit = async () => {
     await updateUserName(usersProfile);
@@ -72,26 +85,42 @@ export default function Header() {
     });
     setToastMessage('');
   };
+
   return (
-    <Flex
+    <Box
       position="sticky"
       top="0"
       left="0"
-      h="auto"
+      h="150px"
       maxW="100%"
-      justifyContent="space-between"
       mb="20px"
       bg="#1a202c"
       boxShadow="lg"
       zIndex="1"
     >
-      <Box display="flex">
+      <Box display="flex" justifyContent="space-between">
         <RoomsList />
         <NewRoomPop />
         <Profiles />
         <LandingButton />
+        {user && (
+          <Box>
+            <Button size="sm" mt="5" clear="all" onClick={handleSubmit}>
+              LogOut
+            </Button>
+          </Box>
+        )}
+        <Button
+          mt="5"
+          size="sm"
+          onClick={() => {
+            setLight(!light), toggleColorMode();
+          }}
+        >
+          {!light ? <FaMoon color="white" /> : <FaSun color="white" />}
+        </Button>
       </Box>
-      <Box>
+      <Box mt="5">
         <StyledText as="kbd">Welcome {usersProfile}</StyledText>
 
         <Button
@@ -100,6 +129,7 @@ export default function Header() {
           variant="ghost"
           rightIcon={<AiTwotoneEdit />}
         />
+        <StyledText as="kbd">You are in {room.name}</StyledText>
         <Popover
           returnFocusOnClose={false}
           isOpen={isOpen}
@@ -135,28 +165,7 @@ export default function Header() {
         position={['fixed', 'fixed', 'relative', 'relative']}
         right="0"
         display={['', '', 'flex', 'flex']}
-      >
-        {user && (
-          <Box>
-            <Button size="sm" my="5" clear="all" onClick={handleSubmit}>
-              LogOut
-            </Button>
-          </Box>
-        )}
-        <Button
-          position={['fixed', 'fixed', 'relative', 'relative']}
-          top={['50', '50', '0', '0']}
-          right={['0', '0', '', '']}
-          bg={['#1a202c', '#1a202c', '#2c313d', '#2c313d']}
-          my="5"
-          size="sm"
-          onClick={() => {
-            setLight(!light), toggleColorMode();
-          }}
-        >
-          {!light ? <FaMoon color="white" /> : <FaSun color="white" />}
-        </Button>
-      </Box>
-    </Flex>
+      ></Box>
+    </Box>
   );
 }
