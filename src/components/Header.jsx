@@ -8,6 +8,7 @@ import NewRoomPop from './NewRoomPop';
 import Profiles from './Profiles';
 import { useState } from 'react';
 import RoomsList from './RoomsList';
+import LandingButton from './LandingButton';
 
 export default function Header() {
   const { toggleColorMode } = useColorMode();

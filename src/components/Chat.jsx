@@ -59,7 +59,6 @@ function Chat() {
                     rightIcon={<FaTrash />}
                   />
                   <Button
-                    onClick={handleDelete}
                     size="xs"
                     variant="ghost"
                     rightIcon={<AiTwotoneEdit />}
