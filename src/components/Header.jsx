@@ -33,6 +33,7 @@ const StyledText = styled(Text)`
   margin-bottom: 10px;
 `;
 export default function Header() {
+  //built in color mode toggle 119
   const { toggleColorMode } = useColorMode();
   const { user } = useAuthContext();
   const {
@@ -72,19 +73,19 @@ export default function Header() {
             </Button>
           </Box>
         )}
+      </Box>
+      <Box mt="5">
         <Button
-          mt="5"
-          size="sm"
+          size="xs"
+          variant="ghost"
           onClick={() => {
             setLight(!light), toggleColorMode();
           }}
         >
           {!light ? <FaMoon color="white" /> : <FaSun color="white" />}
         </Button>
-      </Box>
-      <Box mt="5">
-        <StyledText as="kbd">Welcome {usersProfile}</StyledText>
 
+        <StyledText as="kbd">Welcome {usersProfile}</StyledText>
         <Button
           onClick={onToggle}
           size="xs"
