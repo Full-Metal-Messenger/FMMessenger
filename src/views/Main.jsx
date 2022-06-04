@@ -4,8 +4,6 @@ import AddTooRoomPop from '../components/AddTooRoomPop';
 import Chat from '../components/Chat';
 import Header from '../components/Header';
 import MessageInput from '../components/MessageInput';
-import NewRoomPop from '../components/NewRoomPop';
-import RoomsList from '../components/RoomsList';
 import useMessage from '../hooks/UseMessage/UseMessage';
 import image from '../assets/alchemy.png';
 

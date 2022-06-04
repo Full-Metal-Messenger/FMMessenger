@@ -12,58 +12,15 @@ import {
   AlertIcon,
 } from '@chakra-ui/react';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import useToastAlert from '../hooks/useToast/useToastAlert';
-import { signInUser, signUpUser } from '../services/auth';
+import useAuthForm from '../hooks/UseAuthForm/useAuthForm';
 
 function AuthForm() {
-  const history = useHistory();
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    type,
-    setType,
-    error,
-    setError,
-    username,
-    setusername,
-    setCurrentUser,
-  } = useAuthContext();
+  const { setEmail, setPassword, setType, error, setusername } =
+    useAuthContext();
 
-  const { setToastMessage } = useToastAlert();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      if (type) {
-        const data = await signInUser(email, password);
-        setCurrentUser(data);
-
-        setToastMessage({
-          position: 'top',
-          description: `Welcome Back.`,
-          status: 'info',
-        });
-        setToastMessage('');
-        history.push('/');
-      } else {
-        const data = await signUpUser({ email, password }, username);
-        setCurrentUser(data);
-        setToastMessage({
-          position: 'top',
-          description: `Congratulations ${username}! Your FMM account has been registered.`,
-          status: 'success',
-        });
-        setToastMessage('');
-        history.push('/');
-      }
-    } catch (e) {
-      setError(e.message);
-    }
-  };
+  const { email, password, type, setError, username, handleSubmit } =
+    useAuthForm();
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
