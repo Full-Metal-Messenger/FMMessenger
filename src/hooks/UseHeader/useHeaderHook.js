@@ -11,7 +11,7 @@ export default function useHeaderHook() {
   const { id } = useParams();
   const [light, setLight] = useState(true);
   const [usersProfile, setUsersProfile] = useState('');
-  const [room, setRoom] = useState({});
+  const [room, setRoom] = useState(null);
   const { onClose, isOpen, onToggle } = useDisclosure();
 
   const history = useHistory();
@@ -35,12 +35,15 @@ export default function useHeaderHook() {
   }, []);
   useEffect(() => {
     const getData = async () => {
-      const { body } = await client
-        .from('rooms')
-        .select()
-        .match({ id })
-        .single();
-      setRoom(body);
+      if (id?.length) {
+        const { body } = await client
+          .from('rooms')
+          .select()
+          .match({ id })
+          .single();
+        setRoom(body);
+      }
+      return;
     };
     getData();
   }, [id]);
