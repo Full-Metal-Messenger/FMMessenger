@@ -31,7 +31,14 @@ export default function useHeaderHook() {
     if (id === null) {
       return;
     }
-    getProfileById(user.id).then(({ username }) => setUsersProfile(username));
+    console.log('userID', user.id);
+    const {
+      currentSession: {
+        user: { id },
+      },
+    } = JSON.parse(localStorage.getItem('supabase.auth.token'));
+    console.log('token', id);
+    getProfileById(id).then(({ username }) => setUsersProfile(username));
   }, []);
   useEffect(() => {
     const getData = async () => {

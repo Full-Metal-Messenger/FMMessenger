@@ -4,22 +4,22 @@ import { getUser } from '../services/auth';
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  useEffect(() => {
-    const asyncUser = async () => {
-      const user = await getUser();
-      console.log('userInContext', user);
-      setUser(user);
-      setCurrentUser(user);
-    };
-    asyncUser();
-  }, []);
-  const [user, setUser] = useState({ email: null });
-  const [currentUser, setCurrentUser] = useState({ email: null });
+  const [user, setUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(user || { email: null });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState(true);
   const [error, setError] = useState('');
   const [username, setusername] = useState('');
+
+  useEffect(() => {
+    const asyncUser = async () => {
+      const thisUser = await getUser();
+      console.log('userInContext', user);
+      !user.email && setUser(thisUser);
+    };
+    asyncUser();
+  }, []);
   return (
     <AuthContext.Provider
       value={{
