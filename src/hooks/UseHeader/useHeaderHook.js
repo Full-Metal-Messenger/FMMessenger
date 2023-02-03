@@ -6,6 +6,7 @@ import { logout } from '../../services/auth';
 import { useHistory, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
 import { useDisclosure } from '@chakra-ui/react';
+import useLocalStorage from '../useLocalStorage/useLocalStorage';
 
 export default function useHeaderHook() {
   const { id } = useParams();
@@ -18,6 +19,7 @@ export default function useHeaderHook() {
   const { user, setUser, setEmail, setPassword, setusername } =
     useAuthContext();
   const { setToastMessage } = useToastAlert();
+  const { username } = useLocalStorage();
   const handleSubmit = () => {
     logout();
     history.push('/auth');
@@ -31,14 +33,6 @@ export default function useHeaderHook() {
     if (id === null) {
       return;
     }
-    const {
-      currentSession: {
-        user: {
-          user_metadata: { username },
-        },
-      },
-    } = JSON.parse(localStorage.getItem('supabase.auth.token'));
-
     setUsersProfile(username);
   }, []);
   useEffect(() => {

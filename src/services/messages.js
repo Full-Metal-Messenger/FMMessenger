@@ -1,3 +1,4 @@
+import useLocalStorage from '../hooks/useLocalStorage/useLocalStorage';
 import { getUser } from './auth';
 import { client, parseData } from './client';
 
@@ -31,10 +32,8 @@ export async function deleteMessage(id) {
 }
 
 export async function updateUserName(username) {
-  const resp = await client
-    .from('profiles')
-    .update({ username })
-    .match({ id: await getUser().id });
+  const { id } = useLocalStorage();
+  const resp = await client.from('profiles').update({ username }).match({ id });
   return parseData(resp);
 }
 // possibly no longer used

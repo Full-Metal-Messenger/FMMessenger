@@ -1,13 +1,9 @@
 import { Redirect, Route } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import useLocalStorage from '../hooks/useLocalStorage/useLocalStorage';
 
 export function PrivateRoute({ children, ...rest }) {
-  const {
-    currentSession: {
-      user: { id },
-    },
-  } = JSON.parse(localStorage.getItem('supabase.auth.token'));
-
+  const { id } = useLocalStorage();
   return (
     <Route
       {...rest}
