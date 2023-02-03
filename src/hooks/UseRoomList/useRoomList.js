@@ -15,15 +15,15 @@ export default function useRoomList() {
 
   const getData = async () => {
     const { data } = await client.from('rooms').select();
-    console.log('check', body);
-    setRoom(body);
-    setGlobalRoom(body);
+    console.log('check', data);
+    setRoom(data);
+    setGlobalRoom(data);
   };
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await client.from('rooms').select();
       console.log('check', data);
-      setRoom(body);
+      setRoom(data);
       setGlobalRoom(data);
       setLoading(false);
     };

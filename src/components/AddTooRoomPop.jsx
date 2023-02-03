@@ -35,7 +35,7 @@ function AddTooRoomPop() {
                 placeholder="Your Rooms"
                 variant="filled"
               >
-                {globalRoom?.map(({ name, id }) => (
+                {globalRoom.map(({ name, id }) => (
                   <option value={id} key={id}>
                     {name}
                   </option>
