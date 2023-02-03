@@ -42,7 +42,7 @@ export default function useRoomList() {
     //   })
     //   .subscribe();
 
-    return () => client.removeSubscription(sub);
+    // return () => client.removeSubscription(sub);
   }, []);
   return {
     loading,

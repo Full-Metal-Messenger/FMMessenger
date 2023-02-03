@@ -42,7 +42,7 @@ function useMessage() {
   };
 
   useEffect(() => {
-    const sub = client.messages(`room_id=eq.${id}`);
+    const sub = client.channel(`room_id=eq.${id}`);
     sub.on('broadcast', { event: 'INSERT' }, () => {
       getData(id);
     });
@@ -55,8 +55,6 @@ function useMessage() {
     //   getData(id);
     // })
     // .subscribe();
-
-    return () => client.removeSubscription(sub);
   }, [id]);
 
   useEffect(() => {

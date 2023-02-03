@@ -37,10 +37,10 @@ export async function updateUserName(username) {
     .match({ id: getUser().id });
   return parseData(resp);
 }
-
-export function unsubscribe() {
-  return client.removeAllSubscriptions();
-}
+// possibly no longer used
+// export function unsubscribe() {
+//   return client.removeAllSubscriptions();
+// }
 
 export async function getProfileById(id) {
   const data = await client.from('profiles').select().match({ id }).single();
