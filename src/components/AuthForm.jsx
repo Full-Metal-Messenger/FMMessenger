@@ -14,7 +14,7 @@ import {
 import React from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import useAuthForm from '../hooks/UseAuthForm/useAuthForm';
-//test
+
 function AuthForm() {
   const { setEmail, setPassword, setType, error, setusername } =
     useAuthContext();
