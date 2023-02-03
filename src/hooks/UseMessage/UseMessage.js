@@ -42,15 +42,19 @@ function useMessage() {
   };
 
   useEffect(() => {
-    const sub = client
-      .from(`messages:room_id=eq.${id}`)
-      .on('INSERT', () => {
-        getData(id);
-      })
-      .on('DELETE', () => {
-        getData(id);
-      })
-      .subscribe();
+    const sub = client.messages(`room_id=eq.${id}`);
+    sub.on('broadcast', { event: 'INSERT' }, () => {
+      getData(id);
+    });
+
+    // .from(`messages:room_id=eq.${id}`)
+    // .on('INSERT', () => {
+    //   getData(id);
+    // })
+    // .on('DELETE', () => {
+    //   getData(id);
+    // })
+    // .subscribe();
 
     return () => client.removeSubscription(sub);
   }, [id]);
