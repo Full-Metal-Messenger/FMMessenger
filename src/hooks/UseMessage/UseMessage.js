@@ -42,19 +42,23 @@ function useMessage() {
   };
 
   useEffect(() => {
-    const sub = client.channel(`room_id=eq.${id}`);
-    sub.on('broadcast', { event: 'INSERT' }, () => {
-      getData(id);
-    });
-
-    // .from(`messages:room_id=eq.${id}`)
-    // .on('INSERT', () => {
-    //   getData(id);
-    // })
-    // .on('DELETE', () => {
-    //   getData(id);
-    // })
-    // .subscribe();
+    const sub = client.channel(`postgresChangesChannel`);
+    sub
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'messages',
+          filter: `room_id=eq.${id}`,
+        },
+        (payload) => {
+          console.log('payload', payload);
+          console.log('messages', messages);
+          getData(id);
+        }
+      )
+      .subscribe();
   }, [id]);
 
   useEffect(() => {

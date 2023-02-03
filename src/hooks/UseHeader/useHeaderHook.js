@@ -31,11 +31,9 @@ export default function useHeaderHook() {
     if (id === null) {
       return;
     }
-    // console.log('userID', user.id);
     const {
       currentSession: {
         user: {
-          id,
           user_metadata: { username },
         },
       },

@@ -7,7 +7,7 @@ export function PrivateRoute({ children, ...rest }) {
       user: { id },
     },
   } = JSON.parse(localStorage.getItem('supabase.auth.token'));
-  console.log('token', id);
+  
   // console.log('private route', currentUser.email);
   return (
     <Route

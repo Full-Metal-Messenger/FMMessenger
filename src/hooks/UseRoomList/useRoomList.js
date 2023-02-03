@@ -15,14 +15,14 @@ export default function useRoomList() {
 
   const getData = async () => {
     const { data } = await client.from('rooms').select();
-    console.log('check', data);
+
     setRoom(data);
     setGlobalRoom(data);
   };
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await client.from('rooms').select();
-      console.log('check', data);
+
       setRoom(data);
       setGlobalRoom(data);
       setLoading(false);
@@ -32,10 +32,12 @@ export default function useRoomList() {
 
   useEffect(() => {
     const sub = client.channel('rooms');
-    sub.on('broadcast', { event: 'INSERT' }, () => {
-      const data = getData();
-      console.log('sub', data);
-    });
+    sub
+      .on('broadcast', { event: 'INSERT' }, () => {
+        const data = getData();
+        console.log('sub', data);
+      })
+      .subscribe();
     // const sub = client
     //   .from('rooms')
     //   .on('INSERT', () => {

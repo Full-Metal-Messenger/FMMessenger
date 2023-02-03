@@ -12,7 +12,6 @@ export async function getRoomId() {
 }
 export async function getRoomById(id) {
   const body = await client.from('rooms').select().match({ id }).single();
-  console.log(body);
   parseData(body);
 }
 

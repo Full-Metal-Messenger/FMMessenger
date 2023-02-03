@@ -5,7 +5,6 @@ export async function getUser() {
     data: { session },
   } = await client.auth.getSession();
   const { user } = session;
-  console.log('getUser()', user);
   return user;
 }
 

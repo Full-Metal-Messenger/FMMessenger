@@ -15,7 +15,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const asyncUser = async () => {
       const thisUser = await getUser();
-      console.log('userInContext', user);
       setUser(thisUser);
     };
     !user.email && asyncUser();
