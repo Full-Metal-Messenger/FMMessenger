@@ -33,19 +33,14 @@ export default function useRoomList() {
   useEffect(() => {
     const sub = client.channel('rooms');
     sub
-      .on('broadcast', { event: 'INSERT' }, () => {
-        const data = getData();
-        console.log('sub', data);
-      })
+      .on(
+        'postgres_changes',
+        { event: '*', scheme: 'public', table: 'rooms' },
+        () => {
+          getData();
+        }
+      )
       .subscribe();
-    // const sub = client
-    //   .from('rooms')
-    //   .on('INSERT', () => {
-    //     getData();
-    //   })
-    //   .subscribe();
-
-    // return () => client.removeSubscription(sub);
   }, []);
   return {
     loading,
