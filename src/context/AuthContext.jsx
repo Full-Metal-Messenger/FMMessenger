@@ -19,21 +19,24 @@ const AuthProvider = ({ children }) => {
       const thisUser = await getUser();
       setUser(thisUser);
     };
-
-    const {
-      user: {
-        id,
-        user_metadata: { username },
-      },
-    } = JSON.parse(localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token'));
-    console.log(id, username);
-    if (id) {
+    if (localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')) {
+      const {
+        user: {
+          id,
+          user_metadata: { username },
+        },
+      } = JSON.parse(
+        localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')
+      );
       console.log(id, username);
-      setDefaultState({ id: id, username: username });
+      if (id) {
+        console.log(id, username);
+        setDefaultState({ id: id, username: username });
+      }
     }
     !user.email && asyncUser();
     setLoading(false);
-  }, []);
+  }, [localStorage]);
   return (
     <AuthContext.Provider
       value={{
