@@ -43,12 +43,12 @@ export default function useHeaderHook() {
   useEffect(() => {
     const getData = async () => {
       if (id?.length) {
-        const { body } = await client
+        const { data } = await client
           .from('rooms')
           .select()
           .match({ id })
           .single();
-        setRoom(body);
+        setRoom(data);
       }
       return;
     };

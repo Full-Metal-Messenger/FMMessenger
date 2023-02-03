@@ -13,11 +13,14 @@ const AuthProvider = ({ children }) => {
   const [username, setusername] = useState('');
 
   useEffect(() => {
-    const asyncUser = async () => {
-      const thisUser = await getUser();
-      console.log('userInContext', user);
-      !user.email && setUser(thisUser);
-    };
+    if (!user.email) {
+      const asyncUser = async () => {
+        const thisUser = await getUser();
+        console.log('userInContext', user);
+        setUser(thisUser);
+      };
+      return;
+    }
     asyncUser();
   }, []);
   return (
