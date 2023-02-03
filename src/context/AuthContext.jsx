@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const [currentUser, setCurrentUser] = useState(user || { email: null });
+  const [currentUser, setCurrentUser] = useState();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState(true);
@@ -13,15 +13,13 @@ const AuthProvider = ({ children }) => {
   const [username, setusername] = useState('');
 
   useEffect(() => {
-    if (!user.email) {
-      const asyncUser = async () => {
-        const thisUser = await getUser();
-        console.log('userInContext', user);
-        setUser(thisUser);
-      };
-      return;
-    }
-    asyncUser();
+    const asyncUser = async () => {
+      const thisUser = await getUser();
+      console.log('userInContext', user);
+      setUser(thisUser);
+      setCurrentUser(thisUser);
+    };
+    !user.email && asyncUser();
   }, []);
   return (
     <AuthContext.Provider

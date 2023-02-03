@@ -2,12 +2,18 @@ import { Redirect, Route } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 
 export function PrivateRoute({ children, ...rest }) {
-  const { currentUser } = useAuthContext();
+  const {
+    currentSession: {
+      user: { id },
+    },
+  } = JSON.parse(localStorage.getItem('supabase.auth.token'));
+  console.log('token', id);
+  // console.log('private route', currentUser.email);
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        currentUser ? (
+        id ? (
           children
         ) : (
           <Redirect
