@@ -1,11 +1,20 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { getUser } from '../services/auth';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const user = getUser();
-  const [currentUser, setCurrentUser] = useState(user || { email: null });
+  useEffect(() => {
+    const asyncUser = async () => {
+      const user = await getUser();
+      console.log('userInContext', user);
+      setUser(user);
+      setCurrentUser(user);
+    };
+    asyncUser();
+  }, []);
+  const [user, setUser] = useState({ email: null });
+  const [currentUser, setCurrentUser] = useState({ email: null });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState(true);
@@ -43,3 +52,5 @@ const useAuthContext = () => {
 };
 
 export { AuthProvider, useAuthContext };
+{
+}
