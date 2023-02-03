@@ -52,9 +52,7 @@ function useMessage() {
           table: 'messages',
           filter: `room_id=eq.${id}`,
         },
-        (payload) => {
-          console.log('payload', payload);
-          console.log('messages', messages);
+        () => {
           getData(id);
         }
       )
