@@ -15,13 +15,13 @@ export default function useHeaderHook() {
   const { onClose, isOpen, onToggle } = useDisclosure();
 
   const history = useHistory();
-  const { user, setCurrentUser, setEmail, setPassword, setusername } =
+  const { user, setUser, setEmail, setPassword, setusername } =
     useAuthContext();
   const { setToastMessage } = useToastAlert();
   const handleSubmit = () => {
     logout();
     history.push('/auth');
-    setCurrentUser('');
+    setUser('');
     setEmail('');
     setPassword('');
     setusername('');
@@ -31,14 +31,17 @@ export default function useHeaderHook() {
     if (id === null) {
       return;
     }
-    console.log('userID', user.id);
+    // console.log('userID', user.id);
     const {
       currentSession: {
-        user: { id },
+        user: {
+          id,
+          user_metadata: { username },
+        },
       },
     } = JSON.parse(localStorage.getItem('supabase.auth.token'));
-    console.log('token', id);
-    getProfileById(id).then(({ username }) => setUsersProfile(username));
+
+    setUsersProfile(username);
   }, []);
   useEffect(() => {
     const getData = async () => {

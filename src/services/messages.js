@@ -34,7 +34,7 @@ export async function updateUserName(username) {
   const resp = await client
     .from('profiles')
     .update({ username })
-    .match({ id: getUser().id });
+    .match({ id: await getUser().id });
   return parseData(resp);
 }
 // possibly no longer used

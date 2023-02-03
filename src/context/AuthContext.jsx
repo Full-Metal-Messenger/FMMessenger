@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const [currentUser, setCurrentUser] = useState();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState(true);
@@ -17,7 +17,6 @@ const AuthProvider = ({ children }) => {
       const thisUser = await getUser();
       console.log('userInContext', user);
       setUser(thisUser);
-      setCurrentUser(thisUser);
     };
     !user.email && asyncUser();
   }, []);
@@ -34,8 +33,7 @@ const AuthProvider = ({ children }) => {
         setError,
         username,
         setusername,
-        currentUser,
-        setCurrentUser,
+        setUser,
         user,
       }}
     >

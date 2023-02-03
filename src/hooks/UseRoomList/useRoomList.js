@@ -33,7 +33,8 @@ export default function useRoomList() {
   useEffect(() => {
     const sub = client.channel('rooms');
     sub.on('broadcast', { event: 'INSERT' }, () => {
-      getData();
+      const data = getData();
+      console.log('sub', data);
     });
     // const sub = client
     //   .from('rooms')
