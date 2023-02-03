@@ -1,4 +1,4 @@
-import useLocalStorage from '../hooks/useLocalStorage/useLocalStorage';
+import { useAuthContext } from '../context/AuthContext';
 import { getUser } from './auth';
 import { client, parseData } from './client';
 
@@ -32,7 +32,10 @@ export async function deleteMessage(id) {
 }
 
 export async function updateUserName(username) {
-  const { id } = useLocalStorage();
+  const {
+    defaultState: { id },
+  } = useAuthContext();
+
   const resp = await client.from('profiles').update({ username }).match({ id });
   return parseData(resp);
 }

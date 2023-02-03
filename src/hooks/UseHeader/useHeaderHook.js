@@ -6,7 +6,6 @@ import { logout } from '../../services/auth';
 import { useHistory, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
 import { useDisclosure } from '@chakra-ui/react';
-import useLocalStorage from '../useLocalStorage/useLocalStorage';
 
 export default function useHeaderHook() {
   const { id } = useParams();
@@ -16,10 +15,9 @@ export default function useHeaderHook() {
   const { onClose, isOpen, onToggle } = useDisclosure();
 
   const history = useHistory();
-  const { user, setUser, setEmail, setPassword, setusername } =
+  const { user, setUser, setEmail, setPassword, setusername, defaultState } =
     useAuthContext();
   const { setToastMessage } = useToastAlert();
-  const { username } = useLocalStorage();
   const handleSubmit = () => {
     logout();
     history.push('/auth');
@@ -33,7 +31,7 @@ export default function useHeaderHook() {
     if (id === null) {
       return;
     }
-    setUsersProfile(username);
+    setUsersProfile(defaultState.username || user.username);
   }, []);
   useEffect(() => {
     const getData = async () => {

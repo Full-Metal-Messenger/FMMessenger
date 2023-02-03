@@ -12,10 +12,7 @@ export async function signUpUser({ email, password }, username) {
   const {
     data: { user },
     error,
-  } = await client.auth.signUpWithPassword(
-    { email, password },
-    { data: { username } }
-  );
+  } = await client.auth.signUp({ email, password }, { data: { username } });
   if (error) {
     throw error;
   }

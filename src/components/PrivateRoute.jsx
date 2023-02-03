@@ -1,14 +1,13 @@
 import { Redirect, Route } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import useLocalStorage from '../hooks/useLocalStorage/useLocalStorage';
 
 export function PrivateRoute({ children, ...rest }) {
-  const { id } = useLocalStorage();
+  const { user, defaultState } = useAuthContext();
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        id ? (
+        defaultState.id || user.email ? (
           children
         ) : (
           <Redirect
