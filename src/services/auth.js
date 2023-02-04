@@ -9,10 +9,15 @@ export async function getUser() {
 }
 
 export async function signUpUser({ email, password }, username) {
-  const {
-    data: { user },
-    error,
-  } = await client.auth.signUp({ email, password }, { data: { username } });
+  const { user, error } = await client.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        username: username,
+      },
+    },
+  });
   if (error) {
     throw error;
   }
