@@ -34,9 +34,10 @@ const AuthProvider = ({ children }) => {
         setDefaultState({ id: id, username: username });
       }
     }
-    !user.email && asyncUser();
+    asyncUser();
     setLoading(false);
-  }, [localStorage]);
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -54,6 +55,7 @@ const AuthProvider = ({ children }) => {
         user,
         defaultState,
         loading,
+        setLoading,
       }}
     >
       {children}

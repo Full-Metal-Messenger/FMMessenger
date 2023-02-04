@@ -26,6 +26,17 @@ export default function useAuthForm() {
         setToastMessage('');
         history.push('/');
       } else {
+        // const data = await signInUser({ email, password }, username);
+        // setUser(data)
+        //   .then(
+        //     setToastMessage({
+        //       position: 'top',
+        //       description: `Congratulations ${username}! Your FMM account has been registered.`,
+        //       status: 'success',
+        //     })
+        //   )
+        //   .then(setToastMessage(''))
+        //   .finally(history.push('/'));
         const data = await signUpUser({ email, password }, username);
         setUser(data);
         setToastMessage({
