@@ -7,7 +7,7 @@ export function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        defaultState.id || user.email ? (
+        defaultState.id.length || user.email ? (
           children
         ) : (
           <Redirect

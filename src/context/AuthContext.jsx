@@ -1,11 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getUser } from '../services/auth';
+import { getUser, signInUser } from '../services/auth';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState(true);
@@ -16,26 +15,33 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const asyncUser = async () => {
-      const thisUser = await getUser();
-      setUser(thisUser);
-    };
-    if (localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')) {
-      const {
-        user: {
-          id,
-          user_metadata: { username },
-        },
-      } = JSON.parse(
-        localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')
-      );
-      console.log(id, username);
-      if (id) {
-        console.log(id, username);
-        setDefaultState({ id: id, username: username });
+      if (!user.length) {
+        const thisUser = await getUser();
+
+        setLoading(false);
       }
-    }
+    };
+
+    const userFromStorage = () => {
+      if (localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')) {
+        const {
+          user: {
+            id,
+            user_metadata: { username },
+          },
+        } = JSON.parse(
+          localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')
+        );
+        if (id) {
+          setDefaultState({ id: id, username: username });
+          setUser({ id: id, username: username });
+        }
+      }
+      setLoading(false);
+    };
+
     asyncUser();
-    setLoading(false);
+    userFromStorage();
   }, []);
 
   return (
@@ -54,6 +60,7 @@ const AuthProvider = ({ children }) => {
         setUser,
         user,
         defaultState,
+        setDefaultState,
         loading,
         setLoading,
       }}

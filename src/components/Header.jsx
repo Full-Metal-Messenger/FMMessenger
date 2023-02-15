@@ -35,7 +35,7 @@ const StyledText = styled(Text)`
 export default function Header() {
   //built in color mode toggle 119
   const { toggleColorMode } = useColorMode();
-  const { user } = useAuthContext();
+  const { user, loading } = useAuthContext();
   const {
     isOpen,
     onToggle,
@@ -48,7 +48,9 @@ export default function Header() {
     handleSubmit,
     handleProfileEdit,
   } = useHeaderHook();
-
+  if (loading) {
+    return <p>loading</p>;
+  }
   return (
     <Box
       position="sticky"

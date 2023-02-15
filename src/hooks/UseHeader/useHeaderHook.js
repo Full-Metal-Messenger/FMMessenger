@@ -15,8 +15,15 @@ export default function useHeaderHook() {
   const { onClose, isOpen, onToggle } = useDisclosure();
 
   const history = useHistory();
-  const { user, setUser, setEmail, setPassword, setusername, defaultState } =
-    useAuthContext();
+  const {
+    user,
+    setUser,
+    setEmail,
+    setPassword,
+    setusername,
+    defaultState,
+    setDefaultState,
+  } = useAuthContext();
   const { setToastMessage } = useToastAlert();
   const handleSubmit = () => {
     logout();
@@ -25,13 +32,11 @@ export default function useHeaderHook() {
     setEmail('');
     setPassword('');
     setusername('');
+    setDefaultState({ id: '', username: '' });
   };
 
   useEffect(() => {
-    if (id === null) {
-      return;
-    }
-    setUsersProfile(defaultState.username || user.username);
+    setUsersProfile(user.user_metadata.username || defaultState.username);
   }, []);
   useEffect(() => {
     const getData = async () => {
