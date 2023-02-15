@@ -15,33 +15,38 @@ export default function useHeaderHook() {
   const { onClose, isOpen, onToggle } = useDisclosure();
 
   const history = useHistory();
-  const { user, setCurrentUser, setEmail, setPassword, setusername } =
-    useAuthContext();
+  const {
+    user,
+    setUser,
+    setEmail,
+    setPassword,
+    setusername,
+    defaultState,
+    setDefaultState,
+  } = useAuthContext();
   const { setToastMessage } = useToastAlert();
   const handleSubmit = () => {
     logout();
     history.push('/auth');
-    setCurrentUser('');
+    setUser('');
     setEmail('');
     setPassword('');
     setusername('');
+    setDefaultState({ id: '', username: '' });
   };
 
   useEffect(() => {
-    if (id === null) {
-      return;
-    }
-    getProfileById(user.id).then(({ username }) => setUsersProfile(username));
+    setUsersProfile(user.user_metadata.username || defaultState.username);
   }, []);
   useEffect(() => {
     const getData = async () => {
       if (id?.length) {
-        const { body } = await client
+        const { data } = await client
           .from('rooms')
           .select()
           .match({ id })
           .single();
-        setRoom(body);
+        setRoom(data);
       }
       return;
     };

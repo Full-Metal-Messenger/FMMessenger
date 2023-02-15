@@ -14,29 +14,33 @@ export default function useRoomList() {
   };
 
   const getData = async () => {
-    const { body } = await client.from('rooms').select();
-    setRoom(body);
-    setGlobalRoom(body);
+    const { data } = await client.from('rooms').select();
+
+    setRoom(data);
+    setGlobalRoom(data);
   };
   useEffect(() => {
     const fetchData = async () => {
-      const { body } = await client.from('rooms').select();
-      setRoom(body);
-      setGlobalRoom(body);
+      const { data } = await client.from('rooms').select();
+
+      setRoom(data);
+      setGlobalRoom(data);
       setLoading(false);
     };
     fetchData();
   }, []);
 
   useEffect(() => {
-    const sub = client
-      .from('rooms')
-      .on('INSERT', () => {
-        getData();
-      })
+    const sub = client.channel('rooms');
+    sub
+      .on(
+        'postgres_changes',
+        { event: '*', scheme: 'public', table: 'rooms' },
+        () => {
+          getData();
+        }
+      )
       .subscribe();
-
-    return () => client.removeSubscription(sub);
   }, []);
   return {
     loading,

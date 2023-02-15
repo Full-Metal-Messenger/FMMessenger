@@ -1,3 +1,4 @@
+import { useAuthContext } from '../context/AuthContext';
 import { getUser } from './auth';
 import { client, parseData } from './client';
 
@@ -31,16 +32,17 @@ export async function deleteMessage(id) {
 }
 
 export async function updateUserName(username) {
-  const resp = await client
-    .from('profiles')
-    .update({ username })
-    .match({ id: getUser().id });
+  const {
+    defaultState: { id },
+  } = useAuthContext();
+
+  const resp = await client.from('profiles').update({ username }).match({ id });
   return parseData(resp);
 }
-
-export function unsubscribe() {
-  return client.removeAllSubscriptions();
-}
+// possibly no longer used
+// export function unsubscribe() {
+//   return client.removeAllSubscriptions();
+// }
 
 export async function getProfileById(id) {
   const data = await client.from('profiles').select().match({ id }).single();

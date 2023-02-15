@@ -1,14 +1,26 @@
 import { client, parseData } from './client';
 
-export function getUser() {
-  return client.auth.user();
+export async function getUser() {
+  // const {
+  //   data: { session },
+  // } = await client.auth.getSession();
+  // const { user } = session;
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+  return user;
 }
 
 export async function signUpUser({ email, password }, username) {
-  const { user, error } = await client.auth.signUp(
-    { email, password },
-    { data: { username } }
-  );
+  const { user, error } = await client.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        username: username,
+      },
+    },
+  });
   if (error) {
     throw error;
   }
@@ -16,7 +28,11 @@ export async function signUpUser({ email, password }, username) {
 }
 
 export async function signInUser(email, password) {
-  const { user, error } = await client.auth.signIn({ email, password });
+  // const { user, error } = await client.auth.signIn({ email, password });
+  const {
+    data: { user },
+    error,
+  } = await client.auth.signInWithPassword({ email, password });
   if (error) {
     throw error;
   }
