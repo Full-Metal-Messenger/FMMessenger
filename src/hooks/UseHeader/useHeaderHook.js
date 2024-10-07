@@ -35,7 +35,12 @@ export default function useHeaderHook() {
   };
 
   useEffect(() => {
-    setUsersProfile(user.user_metadata.username || defaultState.username);
+    const getUserProfile = async () => {
+      const data = await getProfileById(user.id);
+      const { username } = data;
+      setUsersProfile(username || defaultState.username);
+    };
+    getUserProfile();
   }, []);
   useEffect(() => {
     const getData = async () => {

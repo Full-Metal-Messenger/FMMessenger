@@ -42,8 +42,6 @@ export default function Header() {
     isOpen,
     onToggle,
     onClose,
-    // light,
-    // setLight,
     room,
     usersProfile,
     setUsersProfile,
