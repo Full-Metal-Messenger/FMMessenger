@@ -10,10 +10,12 @@ import {
   LinkBox,
   Alert,
   AlertIcon,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import useAuthForm from '../hooks/UseAuthForm/useAuthForm';
+// import { useColorModeContext } from '../context/ColorModeContext';
 
 function AuthForm() {
   const { setEmail, setPassword, setType, error, setusername } =
@@ -21,10 +23,12 @@ function AuthForm() {
 
   const { email, password, type, setError, username, handleSubmit } =
     useAuthForm();
+  // const { light } = useColorModeContext();
+  const bg = useColorModeValue('gray.200', 'black');
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
-      <Flex direction="column" background="gray.200" p={12} rounded={6}>
+      <Flex direction="column" background={bg} p={12} rounded={6}>
         <form onSubmit={handleSubmit}>
           <Heading>{type ? 'Log in' : 'Sign Up'}</Heading>
           <FormControl isRequired>
