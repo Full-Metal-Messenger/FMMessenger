@@ -9,7 +9,7 @@ import { useDisclosure } from '@chakra-ui/react';
 
 export default function useHeaderHook() {
   const { id } = useParams();
-  const [light, setLight] = useState(true);
+  // const [light, setLight] = useState(true);
   const [usersProfile, setUsersProfile] = useState('');
   const [room, setRoom] = useState(null);
   const { onClose, isOpen, onToggle } = useDisclosure();
@@ -67,8 +67,8 @@ export default function useHeaderHook() {
     isOpen,
     onToggle,
     onClose,
-    light,
-    setLight,
+    // light,
+    // setLight,
     room,
     usersProfile,
     setUsersProfile,

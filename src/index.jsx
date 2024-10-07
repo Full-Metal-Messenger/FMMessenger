@@ -5,17 +5,20 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { MessageProvider } from './context/MessageContext';
+import { ColorModeProvider } from './context/ColorModeContext';
 
 render(
   <React.StrictMode>
     <ChakraProvider resetCSS={true}>
-      <AuthProvider>
-        <MessageProvider>
-          <Router>
-            <App />
-          </Router>
-        </MessageProvider>
-      </AuthProvider>
+      <ColorModeProvider>
+        <AuthProvider>
+          <MessageProvider>
+            <Router>
+              <App />
+            </Router>
+          </MessageProvider>
+        </AuthProvider>
+      </ColorModeProvider>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
