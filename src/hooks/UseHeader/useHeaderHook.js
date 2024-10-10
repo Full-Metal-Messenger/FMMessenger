@@ -9,7 +9,6 @@ import { useDisclosure } from '@chakra-ui/react';
 
 export default function useHeaderHook() {
   const { id } = useParams();
-  const [light, setLight] = useState(true);
   const [usersProfile, setUsersProfile] = useState('');
   const [room, setRoom] = useState(null);
   const { onClose, isOpen, onToggle } = useDisclosure();
@@ -36,7 +35,12 @@ export default function useHeaderHook() {
   };
 
   useEffect(() => {
-    setUsersProfile(user.user_metadata.username || defaultState.username);
+    const getUserProfile = async () => {
+      const data = await getProfileById(user.id);
+      const { username } = data;
+      setUsersProfile(username || defaultState.username);
+    };
+    getUserProfile();
   }, []);
   useEffect(() => {
     const getData = async () => {
@@ -67,8 +71,6 @@ export default function useHeaderHook() {
     isOpen,
     onToggle,
     onClose,
-    light,
-    setLight,
     room,
     usersProfile,
     setUsersProfile,

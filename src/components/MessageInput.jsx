@@ -1,8 +1,15 @@
-import { Box, Button, FormControl, Input } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  Input,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import React from 'react';
 import useMessage from '../hooks/UseMessage/UseMessage';
 
 function MessageInput() {
+  const text = useColorModeValue('white', 'teal');
   const { post, setPost, handleSubmit } = useMessage();
   return (
     <Box>
@@ -14,6 +21,7 @@ function MessageInput() {
             px="10"
             type="text"
             aria-label="message"
+            color={text}
             value={post}
             onChange={(e) => setPost(e.target.value)}
           />

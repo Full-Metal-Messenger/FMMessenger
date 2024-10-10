@@ -23,14 +23,14 @@ const AuthProvider = ({ children }) => {
     };
 
     const userFromStorage = () => {
-      if (localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')) {
+      if (localStorage.getItem('sb-gibvxohjogoitzzgrpnn-auth-token')) {
         const {
           user: {
             id,
             user_metadata: { username },
           },
         } = JSON.parse(
-          localStorage.getItem('sb-kplqqqfafshaldfzhgir-auth-token')
+          localStorage.getItem('sb-gibvxohjogoitzzgrpnn-auth-token')
         );
         if (id) {
           setDefaultState({ id: id, username: username });

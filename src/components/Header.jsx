@@ -24,6 +24,7 @@ import { AiTwotoneEdit } from 'react-icons/ai';
 import styled from 'styled-components';
 import { animated } from '../views/Landing';
 import useHeaderHook from '../hooks/UseHeader/useHeaderHook';
+import { useColorModeContext } from '../context/ColorModeContext';
 
 const StyledText = styled(Text)`
   animation-name: ${animated};
@@ -36,12 +37,11 @@ export default function Header() {
   //built in color mode toggle 119
   const { toggleColorMode } = useColorMode();
   const { user, loading } = useAuthContext();
+  const { light, setLight } = useColorModeContext();
   const {
     isOpen,
     onToggle,
     onClose,
-    light,
-    setLight,
     room,
     usersProfile,
     setUsersProfile,
