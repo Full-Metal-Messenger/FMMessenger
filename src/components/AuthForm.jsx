@@ -76,7 +76,7 @@ function AuthForm() {
               {error === 'Database error saving new user' ? (
                 <Alert status="error">
                   <AlertIcon />
-                  'Username already registered'
+                  {error}
                 </Alert>
               ) : (
                 <Alert status="error">

@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // if type is true login if false sign up
   const [type, setType] = useState(true);
   const [error, setError] = useState('');
   const [username, setusername] = useState('');
@@ -15,9 +16,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const asyncUser = async () => {
-      if (!user.length) {
+      if (!user.length && !defaultState.id.length) {
         const thisUser = await getUser();
-
+        setUser(thisUser);
+        setDefaultState({ id: thisUser.id, username: thisUser.username });
         setLoading(false);
       }
     };

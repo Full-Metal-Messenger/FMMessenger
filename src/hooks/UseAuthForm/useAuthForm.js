@@ -16,7 +16,6 @@ export default function useAuthForm() {
     try {
       if (type) {
         const data = await signInUser(email, password);
-
         setUser(data);
         setLoading(false);
         setToastMessage({
@@ -31,7 +30,7 @@ export default function useAuthForm() {
         setUser(data);
         setToastMessage({
           position: 'top',
-          description: `Congratulations ${username}! Your FMM account has been registered.`,
+          description: `Congratulations ${data.username}! Your FMM account has been registered.`,
           status: 'success',
         });
         setToastMessage('');
@@ -39,6 +38,7 @@ export default function useAuthForm() {
       }
     } catch (e) {
       setError(e.message);
+      console.log(e.message);
     }
   };
 
